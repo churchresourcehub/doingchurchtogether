@@ -12,8 +12,6 @@
     --soft-ink: #6e675a;
     --burgundy: #7b2d26;
     --burgundy-deep: #63241f;
-    --blush: #e3aca2;
-    --blush-deep: #d99c91;
     --cream: #fdf9f3;
     --olive: #5f684c;
     --line: #ddd3bf;
@@ -38,8 +36,8 @@
 
   /* ---------- Top band ---------- */
   .band {
-    background: var(--blush);
-    color: var(--ink);
+    background: var(--burgundy);
+    color: var(--cream);
     padding: 0 0 84px;
   }
   .band nav {
@@ -55,13 +53,13 @@
     font-size: 0.82rem;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--burgundy);
+    color: var(--cream);
     text-decoration: none;
     white-space: nowrap;
   }
   .band nav .links { display: flex; gap: 28px; flex-wrap: wrap; }
   .band nav .links a {
-    color: var(--burgundy);
+    color: var(--cream);
     text-decoration: none;
     font-size: 0.95rem;
     opacity: 0.85;
@@ -74,14 +72,12 @@
     padding: 64px 24px 0;
   }
   .band h1 {
-    color: var(--burgundy);
     font-weight: normal;
     font-size: clamp(2.8rem, 8vw, 5.4rem);
     line-height: 1.08;
     letter-spacing: 0.5px;
   }
   .band p.tag {
-    color: var(--ink);
     font-style: italic;
     font-size: clamp(1.02rem, 2vw, 1.3rem);
     opacity: 0.9;
@@ -90,24 +86,24 @@
   .band .pill {
     display: inline-block;
     margin-top: 36px;
-    color: var(--burgundy);
+    color: var(--cream);
     text-decoration: none;
     font-size: 0.92rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    border: 1px solid rgba(123, 45, 38, 0.55);
+    border: 1px solid rgba(253, 249, 243, 0.7);
     border-radius: 999px;
     padding: 14px 38px;
     transition: background 0.25s ease, color 0.25s ease;
   }
-  .band .pill:hover { background: var(--burgundy); color: var(--cream); border-color: var(--burgundy); }
+  .band .pill:hover { background: var(--cream); color: var(--burgundy); }
 
   /* ---------- Three-up image row ---------- */
   .trio {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 4px;
-    background: var(--blush);
+    background: var(--burgundy);
   }
   .trio a {
     position: relative;
@@ -234,14 +230,14 @@
   .fit-card p { font-size: 0.92rem; color: var(--soft-ink); }
 
   footer {
-    background: var(--blush);
-    color: var(--ink);
+    background: var(--burgundy);
+    color: var(--cream);
     padding: 40px 24px 52px;
     text-align: center;
     font-size: 0.92rem;
   }
   footer p { max-width: 640px; margin: 0 auto 8px; opacity: 0.92; }
-  footer a { color: var(--burgundy); }
+  footer a { color: var(--cream); }
 
   /* ---------- Subtle scroll reveal ---------- */
   .reveal {
