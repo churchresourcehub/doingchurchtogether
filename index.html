@@ -11,11 +11,14 @@
     --ink: #38332a;
     --soft-ink: #6e675a;
     --burgundy: #7b2d26;
+    --burgundy-deep: #63241f;
+    --cream: #fdf9f3;
     --olive: #5f684c;
     --line: #ddd3bf;
     --rule: #c8bda3;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
   body {
     font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
     background: var(--paper);
@@ -31,148 +34,188 @@
     color: var(--burgundy);
   }
 
-  /* ---------- Top hero ---------- */
-  header.top {
-    text-align: center;
-    padding: 72px 24px 48px;
-    max-width: 780px;
-    margin: 0 auto;
+  /* ---------- Top band ---------- */
+  .band {
+    background: var(--burgundy);
+    color: var(--cream);
+    padding: 0 0 84px;
   }
-  header.top h1 {
-    font-size: clamp(2.1rem, 5.5vw, 3.2rem);
-    font-weight: normal;
-    margin: 16px 0 10px;
-  }
-  header.top .rule {
-    width: 80px;
-    margin: 18px auto;
-    border: none;
-    border-top: 1px solid var(--rule);
-  }
-  header.top p.tagline {
-    font-size: 1.15rem;
-    color: var(--soft-ink);
-    font-style: italic;
-    margin-bottom: 22px;
-  }
-  header.top p.intro {
-    color: var(--soft-ink);
-    font-size: 1rem;
-    text-align: left;
-  }
-  .jump {
+  .band nav {
     display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 28px;
-  }
-  .jump a {
-    font-size: 0.85rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    text-decoration: none;
-    color: var(--burgundy);
-    border: 1px solid var(--line);
-    background: var(--card);
-    border-radius: 4px;
-    padding: 9px 18px;
-  }
-  .jump a:hover { border-color: var(--burgundy); }
-
-  /* ---------- Alternating hero sections ---------- */
-  section.resource {
-    max-width: 1080px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    max-width: 1240px;
     margin: 0 auto;
-    padding: 56px 24px;
+    padding: 26px 32px;
+  }
+  .band nav .brand {
+    font-size: 0.82rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--cream);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .band nav .links { display: flex; gap: 28px; flex-wrap: wrap; }
+  .band nav .links a {
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.95rem;
+    opacity: 0.85;
+  }
+  .band nav .links a:hover { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+  .band .hero {
+    text-align: center;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 64px 24px 0;
+  }
+  .band h1 {
+    font-weight: normal;
+    font-size: clamp(2.8rem, 8vw, 5.4rem);
+    line-height: 1.08;
+    letter-spacing: 0.5px;
+  }
+  .band p.tag {
+    font-style: italic;
+    font-size: clamp(1.02rem, 2vw, 1.3rem);
+    opacity: 0.9;
+    margin-top: 20px;
+  }
+  .band .pill {
+    display: inline-block;
+    margin-top: 36px;
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.92rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid rgba(253, 249, 243, 0.7);
+    border-radius: 999px;
+    padding: 14px 38px;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+  .band .pill:hover { background: var(--cream); color: var(--burgundy); }
+
+  /* ---------- Three-up image row ---------- */
+  .trio {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    background: var(--burgundy);
+  }
+  .trio a {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+  }
+  .trio img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .trio a:hover img { transform: scale(1.03); }
+  .trio .tag-bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(56, 51, 42, 0.82), rgba(56, 51, 42, 0));
+    color: var(--cream);
+    padding: 44px 22px 18px;
+  }
+  .trio .tag-bar .k {
+    display: block;
+    font-size: 0.7rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+  .trio .tag-bar .t {
+    font-size: 1.15rem;
+    line-height: 1.3;
+  }
+
+  /* ---------- Detail sections ---------- */
+  section.resource {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 84px 32px;
     display: flex;
     align-items: center;
-    gap: 48px;
+    gap: 60px;
   }
   section.resource:nth-of-type(even) { flex-direction: row-reverse; }
   section.resource + section.resource { border-top: 1px solid var(--line); }
-  .shot {
-    flex: 1 1 50%;
-    min-width: 0;
-  }
+  .shot { flex: 1 1 50%; min-width: 0; }
   .shot img {
     width: 100%;
     display: block;
     border: 1px solid var(--line);
     border-radius: 8px;
-    box-shadow: 0 12px 32px rgba(56, 51, 42, 0.14);
+    box-shadow: 0 16px 40px rgba(56, 51, 42, 0.16);
     background: #fff;
   }
   .copy { flex: 1 1 46%; }
   .copy h2 {
     font-weight: normal;
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.7rem, 3.4vw, 2.4rem);
+    line-height: 1.2;
     margin: 10px 0 6px;
   }
   .copy .h-rule {
     width: 56px;
     border: none;
     border-top: 2px solid var(--burgundy);
-    margin: 10px 0 16px;
+    margin: 14px 0 18px;
   }
-  .copy p { color: var(--soft-ink); margin-bottom: 14px; font-size: 0.98rem; }
+  .copy p { color: var(--soft-ink); margin-bottom: 15px; font-size: 1.02rem; }
   .copy p strong { color: var(--ink); font-weight: normal; }
   .cta {
     display: inline-block;
-    margin-top: 6px;
+    margin-top: 8px;
     background: var(--burgundy);
-    color: #fdf9f3;
+    color: var(--cream);
     text-decoration: none;
     font-size: 0.9rem;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    padding: 12px 26px;
-    border-radius: 4px;
+    padding: 13px 30px;
+    border-radius: 999px;
+    transition: background 0.25s ease;
   }
-  .cta:hover { background: #632420; }
-  .cta.soon {
-    background: var(--card);
-    color: var(--soft-ink);
-    border: 1px solid var(--line);
-    cursor: default;
-  }
-  .cta-note {
-    display: block;
-    font-size: 0.8rem;
-    font-style: italic;
-    color: var(--soft-ink);
-    margin-top: 10px;
-  }
+  .cta:hover { background: var(--burgundy-deep); }
 
   /* ---------- How they fit ---------- */
   section.fit {
     border-top: 1px solid var(--line);
     background: var(--card);
-    padding: 56px 24px 64px;
+    padding: 72px 24px 84px;
     text-align: center;
   }
-  section.fit h2 { font-weight: normal; font-size: 1.6rem; margin: 12px 0 8px; }
-  section.fit > p {
-    max-width: 680px;
-    margin: 0 auto 34px;
-    color: var(--soft-ink);
-  }
+  section.fit h2 { font-weight: normal; font-size: 1.9rem; margin: 12px 0 10px; }
+  section.fit > p { max-width: 680px; margin: 0 auto 40px; color: var(--soft-ink); }
   .fit-cards {
     display: flex;
-    gap: 18px;
+    gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
-    max-width: 1020px;
+    max-width: 1060px;
     margin: 0 auto;
   }
   .fit-card {
     flex: 1 1 280px;
-    max-width: 330px;
+    max-width: 336px;
     background: var(--paper);
     border: 1px solid var(--line);
     border-top: 3px solid var(--olive);
     border-radius: 6px;
-    padding: 22px 24px;
+    padding: 26px 26px;
     text-align: left;
   }
   .fit-card .label {
@@ -183,46 +226,81 @@
     color: var(--olive);
     margin-bottom: 8px;
   }
-  .fit-card h3 { font-weight: normal; font-size: 1.08rem; margin-bottom: 6px; }
-  .fit-card p { font-size: 0.9rem; color: var(--soft-ink); }
+  .fit-card h3 { font-weight: normal; font-size: 1.14rem; margin-bottom: 6px; }
+  .fit-card p { font-size: 0.92rem; color: var(--soft-ink); }
 
   footer {
-    border-top: 1px solid var(--line);
-    color: var(--soft-ink);
-    padding: 34px 24px 46px;
+    background: var(--burgundy);
+    color: var(--cream);
+    padding: 40px 24px 52px;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 0.92rem;
   }
-  footer p { max-width: 640px; margin: 0 auto 8px; }
+  footer p { max-width: 640px; margin: 0 auto 8px; opacity: 0.92; }
+  footer a { color: var(--cream); }
 
-  @media (max-width: 820px) {
+  /* ---------- Subtle scroll reveal ---------- */
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  @media (max-width: 860px) {
+    .band nav { padding: 20px 20px; }
+    .band nav .links { gap: 16px; }
+    .band .hero { padding-top: 44px; }
+    .band { padding-bottom: 60px; }
+    .trio { grid-template-columns: 1fr; }
+    .trio a { aspect-ratio: 16 / 10; }
     section.resource, section.resource:nth-of-type(even) {
       flex-direction: column;
-      padding: 44px 20px;
-      gap: 28px;
+      padding: 56px 20px;
+      gap: 30px;
     }
-    header.top { padding: 52px 20px 36px; }
   }
 </style>
 </head>
 <body>
 
-<header class="top">
-  <div class="eyebrow">Three Companion Resources</div>
-  <h1>Doing Church Together</h1>
-  <hr class="rule">
-  <p class="tagline">A working library and a field guide, and the theology underneath them both.</p>
-  <p class="intro">Everything on this page grew out of one congregation's life and was built to be shared. The Church Resource Hub holds the working documents, real playbooks and policies you can download and adapt today. The Pastor's Handbook teaches the work those documents serve, chapter by chapter, for the pastor who was handed a church and not much else. And the Theology of Woods Lisenby shows the thinking underneath it all, a connected systematic you can explore and question. Each one stands on its own, and they are better together: the book is the map, the hub is the toolbox, and the theology is the ground they are built on.</p>
-  <nav class="jump">
-    <a href="#hub">The Hub</a>
-    <a href="#handbook">The Handbook</a>
-    <a href="#theology">The Theology</a>
+<header class="band">
+  <nav>
+    <a class="brand" href="#">Doing Church Together</a>
+    <div class="links">
+      <a href="#hub">The Hub</a>
+      <a href="#handbook">The Handbook</a>
+      <a href="#theology">The Theology</a>
+    </div>
   </nav>
+  <div class="hero">
+    <h1>Doing Church Together</h1>
+    <p class="tag">A working library and a field guide, and the theology underneath them both.</p>
+    <a class="pill" href="#hub">Start Exploring</a>
+  </div>
 </header>
 
-<section class="resource" id="hub">
+<div class="trio">
+  <a href="https://churchresourcehub.github.io/">
+    <img src="assets/tall-hub.png" alt="The Church Resource Hub: a searchable library of real church documents on a warm paper background.">
+    <span class="tag-bar"><span class="k">The Toolbox</span><span class="t">The Church Resource Hub</span></span>
+  </a>
+  <a href="https://pastorhandbook.vercel.app">
+    <img src="assets/tall-book.png" alt="The Pastor's Handbook: the contents panel beside an open chapter on the Pastor's Triangle.">
+    <span class="tag-bar"><span class="k">The Map</span><span class="t">The Pastor's Handbook</span></span>
+  </a>
+  <a href="https://theologybot.vercel.app">
+    <img src="assets/tall-theology.png" alt="Woods Lisenby: Theology and Practice, an interactive map of 23 connected doctrines with an Ask assistant.">
+    <span class="tag-bar"><span class="k">The Thinking</span><span class="t">Theology and Practice</span></span>
+  </a>
+</div>
+
+<section class="resource reveal" id="hub">
   <div class="shot">
-    <a href="https://churchresourcehub.github.io/"><img src="assets/hero-hub.png" alt="The Church Resource Hub: a searchable library of church resources on a warm paper background, showing the search bar, ministry-area filters, and resource cards."></a>
+    <a href="https://churchresourcehub.github.io/"><img src="assets/hero-hub.png" alt="The Church Resource Hub: the search bar, ministry-area filters, and resource cards."></a>
   </div>
   <div class="copy">
     <div class="eyebrow">The Toolbox</div>
@@ -235,9 +313,9 @@
   </div>
 </section>
 
-<section class="resource" id="handbook">
+<section class="resource reveal" id="handbook">
   <div class="shot">
-    <a href="https://pastorhandbook.vercel.app"><img src="assets/hero-book.png" alt="The Pastor's Handbook: the contents panel on the left listing all eight parts, with the cover and table of contents open in the reading pane."></a>
+    <a href="https://pastorhandbook.vercel.app"><img src="assets/hero-book.png" alt="The Pastor's Handbook: the contents panel on the left, with the cover and table of contents open in the reading pane."></a>
   </div>
   <div class="copy">
     <div class="eyebrow">The Map</div>
@@ -250,9 +328,9 @@
   </div>
 </section>
 
-<section class="resource" id="theology">
+<section class="resource reveal" id="theology">
   <div class="shot">
-    <a href="https://theologybot.vercel.app"><img src="assets/hero-theology.png" alt="Woods Lisenby: Theology and Practice, an interactive map of 23 connected doctrine nodes rising from Revelation at the foundation through Scripture, Authority, and Church, with tabs for the theology, the sermons, and the practice, and an Ask button."></a>
+    <a href="https://theologybot.vercel.app"><img src="assets/hero-theology.png" alt="Woods Lisenby: Theology and Practice, the doctrine map with tabs for the theology, the sermons, and the practice, and an Ask button."></a>
   </div>
   <div class="copy">
     <div class="eyebrow">The Thinking</div>
@@ -265,7 +343,7 @@
   </div>
 </section>
 
-<section class="fit">
+<section class="fit reveal">
   <div class="eyebrow">One Desk, Three Doors</div>
   <h2>How they fit together</h2>
   <p>Start anywhere. The three resources grew out of one congregation's rebuild, and they were built to hand ministry on rather than hold it close, because nothing faithful should have to be invented twice.</p>
@@ -292,6 +370,22 @@
   <p>Built at Spanish Fort United Methodist Church on the Alabama Gulf Coast, and shared with the whole church.</p>
   <p><a href="https://churchresourcehub.github.io/">Church Resource Hub</a> · <a href="https://pastorhandbook.vercel.app">The Pastor's Handbook</a> · <a href="https://theologybot.vercel.app">Woods Lisenby: Theology and Practice</a></p>
 </footer>
+
+<script>
+  (function () {
+    var els = document.querySelectorAll(".reveal");
+    if (!("IntersectionObserver" in window)) {
+      els.forEach(function (e) { e.classList.add("in"); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function (e) { io.observe(e); });
+  })();
+</script>
 
 </body>
 </html>
