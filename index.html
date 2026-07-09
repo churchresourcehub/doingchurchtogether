@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Doing Church Together | The Hub, the Handbook, and the Theology</title>
+<style>
+  :root {
+    --paper: #f9f5ec;
+    --card: #fffdf7;
+    --ink: #38332a;
+    --soft-ink: #6e675a;
+    --burgundy: #7b2d26;
+    --olive: #5f684c;
+    --line: #ddd3bf;
+    --rule: #c8bda3;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: Georgia, "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+  a { color: var(--burgundy); }
+
+  .eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--burgundy);
+  }
+
+  /* ---------- Top hero ---------- */
+  header.top {
+    text-align: center;
+    padding: 72px 24px 48px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  header.top h1 {
+    font-size: clamp(2.1rem, 5.5vw, 3.2rem);
+    font-weight: normal;
+    margin: 16px 0 10px;
+  }
+  header.top .rule {
+    width: 80px;
+    margin: 18px auto;
+    border: none;
+    border-top: 1px solid var(--rule);
+  }
+  header.top p.tagline {
+    font-size: 1.15rem;
+    color: var(--soft-ink);
+    font-style: italic;
+    margin-bottom: 22px;
+  }
+  header.top p.intro {
+    color: var(--soft-ink);
+    font-size: 1rem;
+    text-align: left;
+  }
+  .jump {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+  .jump a {
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--burgundy);
+    border: 1px solid var(--line);
+    background: var(--card);
+    border-radius: 4px;
+    padding: 9px 18px;
+  }
+  .jump a:hover { border-color: var(--burgundy); }
+
+  /* ---------- Alternating hero sections ---------- */
+  section.resource {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 56px 24px;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+  section.resource:nth-of-type(even) { flex-direction: row-reverse; }
+  section.resource + section.resource { border-top: 1px solid var(--line); }
+  .shot {
+    flex: 1 1 50%;
+    min-width: 0;
+  }
+  .shot img {
+    width: 100%;
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 12px 32px rgba(56, 51, 42, 0.14);
+    background: #fff;
+  }
+  .copy { flex: 1 1 46%; }
+  .copy h2 {
+    font-weight: normal;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    margin: 10px 0 6px;
+  }
+  .copy .h-rule {
+    width: 56px;
+    border: none;
+    border-top: 2px solid var(--burgundy);
+    margin: 10px 0 16px;
+  }
+  .copy p { color: var(--soft-ink); margin-bottom: 14px; font-size: 0.98rem; }
+  .copy p strong { color: var(--ink); font-weight: normal; }
+  .cta {
+    display: inline-block;
+    margin-top: 6px;
+    background: var(--burgundy);
+    color: #fdf9f3;
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 12px 26px;
+    border-radius: 4px;
+  }
+  .cta:hover { background: #632420; }
+  .cta.soon {
+    background: var(--card);
+    color: var(--soft-ink);
+    border: 1px solid var(--line);
+    cursor: default;
+  }
+  .cta-note {
+    display: block;
+    font-size: 0.8rem;
+    font-style: italic;
+    color: var(--soft-ink);
+    margin-top: 10px;
+  }
+
+  /* ---------- How they fit ---------- */
+  section.fit {
+    border-top: 1px solid var(--line);
+    background: var(--card);
+    padding: 56px 24px 64px;
+    text-align: center;
+  }
+  section.fit h2 { font-weight: normal; font-size: 1.6rem; margin: 12px 0 8px; }
+  section.fit > p {
+    max-width: 680px;
+    margin: 0 auto 34px;
+    color: var(--soft-ink);
+  }
+  .fit-cards {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1020px;
+    margin: 0 auto;
+  }
+  .fit-card {
+    flex: 1 1 280px;
+    max-width: 330px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--olive);
+    border-radius: 6px;
+    padding: 22px 24px;
+    text-align: left;
+  }
+  .fit-card .label {
+    font-size: 0.74rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--olive);
+    margin-bottom: 8px;
+  }
+  .fit-card h3 { font-weight: normal; font-size: 1.08rem; margin-bottom: 6px; }
+  .fit-card p { font-size: 0.9rem; color: var(--soft-ink); }
+
+  footer {
+    border-top: 1px solid var(--line);
+    color: var(--soft-ink);
+    padding: 34px 24px 46px;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  footer p { max-width: 640px; margin: 0 auto 8px; }
+
+  @media (max-width: 820px) {
+    section.resource, section.resource:nth-of-type(even) {
+      flex-direction: column;
+      padding: 44px 20px;
+      gap: 28px;
+    }
+    header.top { padding: 52px 20px 36px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="eyebrow">Three Companion Resources</div>
+  <h1>Doing Church Together</h1>
+  <hr class="rule">
+  <p class="tagline">A working library and a field guide, and the theology underneath them both.</p>
+  <p class="intro">Everything on this page grew out of one congregation's life and was built to be shared. The Church Resource Hub holds the working documents, real playbooks and policies you can download and adapt today. The Pastor's Handbook teaches the work those documents serve, chapter by chapter, for the pastor who was handed a church and not much else. And the Theology of Woods Lisenby shows the thinking underneath it all, a connected systematic you can explore and question. Each one stands on its own, and they are better together: the book is the map, the hub is the toolbox, and the theology is the ground they are built on.</p>
+  <nav class="jump">
+    <a href="#hub">The Hub</a>
+    <a href="#handbook">The Handbook</a>
+    <a href="#theology">The Theology</a>
+  </nav>
+</header>
+
+<section class="resource" id="hub">
+  <div class="shot">
+    <a href="https://churchresourcehub.github.io/"><img src="assets/hero-hub.png" alt="The Church Resource Hub: a searchable library of church resources on a warm paper background, showing the search bar, ministry-area filters, and resource cards."></a>
+  </div>
+  <div class="copy">
+    <div class="eyebrow">The Toolbox</div>
+    <h2>The Church Resource Hub</h2>
+    <hr class="h-rule">
+    <p>A shared library of systems, processes, and working documents from real churches, nearly 150 resources across every ministry area: orientation packets and budgets, event playbooks and safety policies, frameworks and worship plans. Nothing theoretical, nothing gated; every card is a document a congregation actually uses, offered so yours can adapt it instead of starting from a blank page.</p>
+    <p><strong>How to use it:</strong> search for what you need or browse by ministry area, download the file, and make it your own. Stars mark the cornerstone documents, and the contribute page lets your church add its best work to the library.</p>
+    <p><strong>How it connects:</strong> every "Grab the tools" list in the Pastor's Handbook points to a live card here. The book tells you what the tool is for; the hub hands it to you.</p>
+    <a class="cta" href="https://churchresourcehub.github.io/">Browse the Hub</a>
+  </div>
+</section>
+
+<section class="resource" id="handbook">
+  <div class="shot">
+    <img src="assets/hero-book.png" alt="The Pastor's Handbook cover page: the title, the subtitle 'A field guide for leading a local church,' and the opening of the table of contents.">
+  </div>
+  <div class="copy">
+    <div class="eyebrow">The Map</div>
+    <h2>The Pastor's Handbook</h2>
+    <hr class="h-rule">
+    <p>A digital field guide for leading a local church, written for first-time and newly appointed pastors, Course of Study students, and workshop cohorts. Thirty-four chapters across eight parts walk the whole job, from the pastor's own call and inner life through worship, care, discipleship, missions, money, and leading change, each chapter teaching one piece of the work in plain language, telling a true story of how it went at a real church, and ending with concrete steps.</p>
+    <p><strong>How to use it:</strong> read it straight through or jump to the chapter for the season you are in, take its one next step this week, and follow its links to the exact documents you need.</p>
+    <p><strong>How it connects:</strong> the handbook is the map to the hub's toolbox. Where the hub gives you the document, the book gives you the path, and its running case study is the same congregation whose files fill the library.</p>
+    <a class="cta soon" href="#handbook">Read the Handbook</a>
+    <span class="cta-note">Publishing soon. The full draft is complete and in review.</span>
+  </div>
+</section>
+
+<section class="resource" id="theology">
+  <div class="shot">
+    <img src="assets/hero-theology.png" alt="The Theology of Woods Lisenby: a dark interactive map of 23 connected doctrine nodes, rising from Revelation at the foundation through Scripture, Authority, and Church to the branches above.">
+  </div>
+  <div class="copy">
+    <div class="eyebrow">The Thinking</div>
+    <h2>The Theology of Woods Lisenby</h2>
+    <hr class="h-rule">
+    <p>An interactive systematic drawn from one pastor's written and preached words across seventeen years of ministry: sermons, papers, studies, and notes, distilled into twenty-three connected doctrine pages. It reads bottom to top, every doctrine hanging by a visible line from the foundation it depends on, and a grounded chat answers your questions from the corpus itself, anchored in what was actually written and preached rather than in the internet's guesses.</p>
+    <p><strong>How to use it:</strong> click any doctrine to read its full treatment and follow the connection chips from one locus into the next, or simply ask the bot a question, about grace, about Scripture, about women in ministry, and read the sources it answers from.</p>
+    <p><strong>How it connects:</strong> the practice in the hub and the handbook stands on this thinking. If the book ever makes you ask why behind a how, this is where the why lives.</p>
+    <a class="cta soon" href="#theology">Explore the Theology</a>
+    <span class="cta-note">Link coming. The interactive systematic is being prepared for sharing.</span>
+  </div>
+</section>
+
+<section class="fit">
+  <div class="eyebrow">One Desk, Three Doors</div>
+  <h2>How they fit together</h2>
+  <p>Start anywhere. The three resources grew out of one congregation's rebuild, and they were built to hand ministry on rather than hold it close, because nothing faithful should have to be invented twice.</p>
+  <div class="fit-cards">
+    <div class="fit-card">
+      <div class="label">Grab a tool</div>
+      <h3>The Hub</h3>
+      <p>You need a working document today, a policy, a playbook, a packet. Search the library, download it, and adapt it for your congregation.</p>
+    </div>
+    <div class="fit-card">
+      <div class="label">Learn the work</div>
+      <h3>The Handbook</h3>
+      <p>You need to understand the job the documents serve. Read the chapter for your season, take its next step, and grab its tools from the hub as you go.</p>
+    </div>
+    <div class="fit-card">
+      <div class="label">See the ground</div>
+      <h3>The Theology</h3>
+      <p>You want the thinking underneath the practice. Walk the map from its foundation upward, or ask a question and follow the answer to its sources.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Built at Spanish Fort United Methodist Church on the Alabama Gulf Coast, and shared with the whole church.</p>
+  <p><a href="https://churchresourcehub.github.io/">Church Resource Hub</a> · The Pastor's Handbook · The Theology of Woods Lisenby</p>
+</footer>
+
+</body>
+</html>
