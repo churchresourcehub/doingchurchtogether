@@ -12,7 +12,7 @@
     --soft-ink: #6e675a;
     --burgundy: #7b2d26;
     --burgundy-deep: #63241f;
-    --band: #8e3a31;
+    --band: #a8473a;
     --cream: #fdf9f3;
     --olive: #5f684c;
     --line: #ddd3bf;
@@ -105,6 +105,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 4px;
     background: var(--band);
+    border-bottom: 10px solid var(--band);
   }
   .trio a {
     position: relative;
@@ -126,9 +127,9 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to top, rgba(56, 51, 42, 0.82), rgba(56, 51, 42, 0));
+    background: linear-gradient(to top, rgba(46, 41, 34, 0.94) 0%, rgba(46, 41, 34, 0.78) 45%, rgba(46, 41, 34, 0) 100%);
     color: var(--cream);
-    padding: 44px 22px 18px;
+    padding: 76px 22px 18px;
   }
   .trio .tag-bar .k {
     display: block;
@@ -252,8 +253,15 @@
   }
 
   @media (max-width: 860px) {
-    .band nav { padding: 20px 20px; }
-    .band nav .links { gap: 16px; }
+    .band nav {
+      flex-direction: column;
+      gap: 12px;
+      padding: 22px 16px 4px;
+      text-align: center;
+    }
+    .band nav .brand { letter-spacing: 2px; }
+    .band nav .links { gap: 18px; justify-content: center; }
+    .band nav .links a { font-size: 0.88rem; }
     .band .hero { padding-top: 44px; }
     .band { padding-bottom: 60px; }
     .trio { grid-template-columns: 1fr; }
@@ -294,7 +302,7 @@
     <span class="tag-bar"><span class="k">The Map</span><span class="t">The Pastor's Handbook</span></span>
   </a>
   <a href="https://theologybot.vercel.app">
-    <img src="assets/tall-theology.png" alt="Woods Lisenby: Theology and Practice, an interactive map of 23 connected doctrines with an Ask assistant.">
+    <img src="assets/tall-theology.png" style="object-position: center 62%" alt="Woods Lisenby: Theology and Practice, an interactive map of 23 connected doctrines with an Ask assistant.">
     <span class="tag-bar"><span class="k">The Thinking</span><span class="t">Theology and Practice</span></span>
   </a>
 </div>
