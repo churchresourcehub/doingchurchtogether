@@ -102,7 +102,7 @@
   /* ---------- Three-up image row ---------- */
   .trio {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 4px;
     background: var(--band);
     border-bottom: 10px solid var(--band);
@@ -252,6 +252,9 @@
     .reveal { opacity: 1; transform: none; transition: none; }
   }
 
+  @media (max-width: 1080px) {
+    .trio { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 860px) {
     .band nav {
       flex-direction: column;
@@ -283,6 +286,7 @@
       <a href="#hub">The Hub</a>
       <a href="#handbook">The Handbook</a>
       <a href="#theology">The Theology</a>
+      <a href="#comparative">Comparative</a>
     </div>
   </nav>
   <div class="hero">
@@ -304,6 +308,10 @@
   <a href="https://theologybot.vercel.app">
     <img src="assets/tall-theology.png" style="object-position: center 62%" alt="Woods Lisenby: Theology and Practice, an interactive map of 23 connected doctrines with an Ask assistant.">
     <span class="tag-bar"><span class="k">The Thinking</span><span class="t">Theology and Practice</span></span>
+  </a>
+  <a href="https://theologycompare.vercel.app">
+    <img src="assets/tall-comparative.png" alt="Comparative Theology: the Christian traditions plotted on a two-axis map of what they believe.">
+    <span class="tag-bar"><span class="k">The Compass</span><span class="t">Comparative Theology</span></span>
   </a>
 </div>
 
@@ -352,10 +360,25 @@
   </div>
 </section>
 
+<section class="resource reveal" id="comparative">
+  <div class="shot">
+    <a href="https://theologycompare.vercel.app"><img src="assets/hero-comparative.png" alt="Comparative Theology: the traditions plotted on a two-axis map, with tabs for the spectrum, the doctrine matrix, the genealogy, and authors and leaders."></a>
+  </div>
+  <div class="copy">
+    <div class="eyebrow">The Compass</div>
+    <h2>Comparative Theology</h2>
+    <hr class="h-rule">
+    <p>A companion to the theology that sets one pastor's Wesleyan convictions inside the wider family of Christian traditions. Compare what the churches believe, doctrine by doctrine, and trace how they branched across two thousand years, from the early church to the many streams alive today. Every tradition is drawn fairly from its own voice, so the differences stay honest and the common ground stays real.</p>
+    <p><strong>How to use it:</strong> pick any two questions and watch the traditions sort themselves across the map, read a single doctrine straight across the families, or open a tradition to meet its founders and the authors you would find on the shelf today. A built-in assistant compares any two traditions for you and answers from the sources.</p>
+    <p><strong>How it connects:</strong> the Theology gives you Woods's own systematic, and this sets that systematic in the wider landscape. You can see where your own congregation stands, and understand the neighbors you share a town and a mission with.</p>
+    <a class="cta" href="https://theologycompare.vercel.app">Open Comparative Theology</a>
+  </div>
+</section>
+
 <section class="fit reveal">
-  <div class="eyebrow">One Desk, Three Doors</div>
+  <div class="eyebrow">One Desk, Four Doors</div>
   <h2>How they fit together</h2>
-  <p>Start anywhere. The three resources grew out of one congregation's rebuild, and they were built to hand ministry on rather than hold it close, because nothing faithful should have to be invented twice.</p>
+  <p>Start anywhere. The four resources grew out of one congregation's rebuild, and they were built to hand ministry on rather than hold it close, because nothing faithful should have to be invented twice.</p>
   <div class="fit-cards">
     <div class="fit-card">
       <div class="label">Grab a tool</div>
@@ -372,12 +395,17 @@
       <h3>The Theology</h3>
       <p>You want the thinking underneath the practice. Walk the map from its foundation upward, or ask a question and follow the answer to its sources.</p>
     </div>
+    <div class="fit-card">
+      <div class="label">Find your bearings</div>
+      <h3>Comparative Theology</h3>
+      <p>You want to know where your tradition stands among the others. Compare the churches on what they believe and how they branched, and find the common ground you already share.</p>
+    </div>
   </div>
 </section>
 
 <footer>
   <p>Built at Spanish Fort United Methodist Church on the Alabama Gulf Coast, and shared with the whole church.</p>
-  <p><a href="https://churchresourcehub.github.io/">Church Resource Hub</a> · <a href="https://pastorhandbook.vercel.app">The Pastor's Handbook</a> · <a href="https://theologybot.vercel.app">Woods Lisenby: Theology and Practice</a></p>
+  <p><a href="https://churchresourcehub.github.io/">Church Resource Hub</a> · <a href="https://pastorhandbook.vercel.app">The Pastor's Handbook</a> · <a href="https://theologybot.vercel.app">Woods Lisenby: Theology and Practice</a> · <a href="https://theologycompare.vercel.app">Comparative Theology</a></p>
 </footer>
 
 <script>
