@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Doing Church Together | The Hub, the Handbook, and the Theology</title>
+<title>Doing Church Together | The Hub, the Handbook, and Comparative Theology</title>
 <style>
   :root {
     --paper: #f9f5ec;
@@ -99,10 +99,55 @@
   }
   .band .pill:hover { background: var(--cream); color: var(--burgundy); }
 
+  /* ---------- Additional-resource hero ---------- */
+  section.extra {
+    background: var(--band);
+    color: var(--cream);
+    padding: 84px 24px 92px;
+    text-align: center;
+  }
+  section.extra .eyebrow { color: #b9c3dd; }
+  section.extra h2 {
+    font-weight: normal;
+    font-size: clamp(1.8rem, 3.6vw, 2.5rem);
+    line-height: 1.25;
+    max-width: 860px;
+    margin: 12px auto 18px;
+  }
+  section.extra .extra-copy {
+    max-width: 780px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  section.extra .extra-copy p { margin-bottom: 15px; opacity: 0.92; font-size: 1.02rem; }
+  section.extra .extra-copy p strong { font-weight: normal; color: #e4dccb; }
+  section.extra .shot-wide { max-width: 880px; margin: 36px auto 30px; }
+  section.extra .shot-wide img {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+    border: 1px solid rgba(253, 249, 243, 0.25);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
+    background: #fff;
+  }
+  section.extra .pill {
+    display: inline-block;
+    color: var(--cream);
+    text-decoration: none;
+    font-size: 0.92rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid rgba(253, 249, 243, 0.7);
+    border-radius: 999px;
+    padding: 14px 38px;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+  section.extra .pill:hover { background: var(--cream); color: var(--burgundy); }
+
   /* ---------- Three-up image row ---------- */
   .trio {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 4px;
     background: var(--band);
     border-bottom: 10px solid var(--band);
@@ -254,6 +299,7 @@
 
   @media (max-width: 1080px) {
     .trio { grid-template-columns: repeat(2, 1fr); }
+    .trio a:last-child { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
   }
   @media (max-width: 860px) {
     .band nav {
@@ -285,13 +331,13 @@
     <div class="links">
       <a href="#hub">Hub</a>
       <a href="#handbook">Handbook</a>
-      <a href="#theology">Theology and Practice</a>
       <a href="#comparative">Comparative Theology</a>
+      <a href="#theology">Theology and Practice</a>
     </div>
   </nav>
   <div class="hero">
     <h1>Doing Church Together</h1>
-    <p class="tag">A library, field guide, and the theology underneath.</p>
+    <p class="tag">A shared library, a field guide, and a map of the Christian traditions.</p>
     <a class="pill" href="#hub">Start Exploring</a>
   </div>
 </header>
@@ -304,10 +350,6 @@
   <a href="https://pastorhandbook.vercel.app">
     <img src="assets/tall-book.png" alt="The Pastor's Handbook: the contents panel beside an open chapter on the Pastor's Triangle.">
     <span class="tag-bar"><span class="k">The Map</span><span class="t">The Pastor's Handbook</span></span>
-  </a>
-  <a href="https://theologybot.vercel.app">
-    <img src="assets/tall-theology.png" style="object-position: center 62%" alt="Theology and Practice: an interactive map of 23 connected doctrines with an Ask assistant.">
-    <span class="tag-bar"><span class="k">The Thinking</span><span class="t">Theology and Practice</span></span>
   </a>
   <a href="https://theologycompare.vercel.app">
     <img src="assets/tall-comparative.png" alt="Comparative Theology: the Christian traditions plotted on a two-axis map of what they believe.">
@@ -347,21 +389,6 @@
   </div>
 </section>
 
-<section class="resource reveal" id="theology">
-  <div class="shot">
-    <a href="https://theologybot.vercel.app"><img src="assets/hero-theology.png" alt="Theology and Practice: the doctrine map with an Ask Me Anything assistant."></a>
-  </div>
-  <div class="copy">
-    <div class="eyebrow">The Thinking</div>
-    <h2>One pastor's way of working through theology and practice</h2>
-    <hr class="h-rule">
-    <p>This began as one pastor's file drawer: almost twenty years of sermons, ordination papers, Bible studies, and weekly notes to a congregation. Gathered in one place, those pages turned out to hold a connected theology, so it was mapped: twenty-three doctrines, each hanging by a visible line from the foundation it depends on, alongside the sermons themselves and the practice library his church runs on. It is not offered as the definitive word on anything. It is a real-world example of a pastor working out his theology in the open, in a visual, connected way, and an assistant answers your questions from the full text of it, anchored in what was actually written and preached rather than in the internet's guesses.</p>
-    <p><strong>How to use it:</strong> click any doctrine to read its full treatment, in the scholar's version or the plain-language one, and follow the connections from one locus into the next, or simply ask the assistant a question, about grace, about Scripture, about women in ministry, and read the sources it answers from.</p>
-    <p><strong>How it connects:</strong> the practice in the hub and the handbook stands on this thinking. If the book ever makes you ask why behind a how, this is where the why lives.</p>
-    <a class="cta" href="https://theologybot.vercel.app">Explore the Theology</a>
-  </div>
-</section>
-
 <section class="resource reveal" id="comparative">
   <div class="shot">
     <a href="https://theologycompare.vercel.app"><img src="assets/hero-comparative.png" alt="Comparative Theology: the traditions plotted on a two-axis map, with tabs for the spectrum, the doctrine matrix, the genealogy, and authors and leaders."></a>
@@ -370,17 +397,17 @@
     <div class="eyebrow">The Compass</div>
     <h2>Comparative Theology</h2>
     <hr class="h-rule">
-    <p>A companion to the theology that sets one pastor's Wesleyan convictions inside the wider family of Christian traditions. Compare what the churches believe, doctrine by doctrine, and trace how they branched across two thousand years, from the early church to the many streams alive today. Every tradition is drawn fairly from its own voice, so the differences stay honest and the common ground stays real.</p>
+    <p>A map of the wider family of Christian traditions. Compare what the churches believe, doctrine by doctrine, and trace how they branched across two thousand years, from the early church to the many streams alive today. Every tradition is drawn fairly from its own voice, so the differences stay honest and the common ground stays real.</p>
     <p><strong>How to use it:</strong> pick any two questions and watch the traditions sort themselves across the map, read a single doctrine straight across the families, or open a tradition to meet its founders and the authors you would find on the shelf today. A built-in assistant compares any two traditions for you and answers from the sources.</p>
-    <p><strong>How it connects:</strong> the Theology gives you one pastor's own systematic, and this sets that systematic in the wider landscape. You can see where your own congregation stands, and understand the neighbors you share a town and a mission with.</p>
+    <p><strong>How it connects:</strong> the hub and the handbook show you one congregation's practice. This shows you where any congregation's tradition sits inside the whole family, so you can see where your own stands and understand the neighbors you share a town and a mission with.</p>
     <a class="cta" href="https://theologycompare.vercel.app">Open Comparative Theology</a>
   </div>
 </section>
 
 <section class="fit reveal">
-  <div class="eyebrow">One Desk, Four Doors</div>
+  <div class="eyebrow">One Desk, Three Doors</div>
   <h2>How they fit together</h2>
-  <p>Start anywhere. The four resources grew out of one congregation's rebuild, and they were built to hand ministry on rather than hold it close, because nothing faithful should have to be invented twice.</p>
+  <p>Start anywhere. The three resources grew out of one congregation's rebuild, and they were built to hand ministry on rather than hold it close, because nothing faithful should have to be invented twice.</p>
   <div class="fit-cards">
     <div class="fit-card">
       <div class="label">Grab a tool</div>
@@ -393,11 +420,6 @@
       <p>You need to understand the job the documents serve. Read the chapter for your season, take its next step, and grab its tools from the hub as you go.</p>
     </div>
     <div class="fit-card">
-      <div class="label">See the ground</div>
-      <h3>Theology and Practice</h3>
-      <p>You want the thinking underneath the practice. Walk the map from its foundation upward, or ask a question and follow the answer to its sources.</p>
-    </div>
-    <div class="fit-card">
       <div class="label">Find your bearings</div>
       <h3>Comparative Theology</h3>
       <p>You want to know where your tradition stands among the others. Compare the churches on what they believe and how they branched, and find the common ground you already share.</p>
@@ -405,9 +427,23 @@
   </div>
 </section>
 
+<section class="extra reveal" id="theology">
+  <div class="eyebrow">An Additional Resource</div>
+  <h2>One pastor's way of working through theology and practice</h2>
+  <div class="extra-copy">
+    <p>This began as one pastor's file drawer: almost twenty years of sermons, ordination papers, Bible studies, and weekly notes to a congregation. Gathered in one place, those pages turned out to hold a connected theology, so it was mapped: twenty-three doctrines, each hanging by a visible line from the foundation it depends on, alongside the sermons themselves and the practice library his church runs on. It is not offered as the definitive word on anything. It is a real-world example of a pastor working out his theology in the open, in a visual, connected way, and an assistant answers your questions from the full text of it, anchored in what was actually written and preached rather than in the internet's guesses.</p>
+    <p><strong>How to use it:</strong> click any doctrine to read its full treatment, in the scholar's version or the plain-language one, and follow the connections from one locus into the next, or simply ask the assistant a question, about grace, about Scripture, about women in ministry, and read the sources it answers from.</p>
+    <p><strong>How it connects:</strong> the practice in the hub and the handbook stands on this thinking. If the book ever makes you ask why behind a how, this is where the why lives.</p>
+  </div>
+  <div class="shot-wide">
+    <a href="https://theologybot.vercel.app"><img src="assets/hero-theology.png" alt="Theology and Practice: the doctrine map with an Ask Me Anything assistant."></a>
+  </div>
+  <a class="pill" href="https://theologybot.vercel.app">Explore the Theology</a>
+</section>
+
 <footer>
   <p>Built at Spanish Fort United Methodist Church on the Alabama Gulf Coast, and shared with the whole church.</p>
-  <p><a href="https://churchresourcehub.github.io/">Church Resource Hub</a> · <a href="https://pastorhandbook.vercel.app">The Pastor's Handbook</a> · <a href="https://theologybot.vercel.app">Theology and Practice</a> · <a href="https://theologycompare.vercel.app">Comparative Theology</a></p>
+  <p><a href="https://churchresourcehub.github.io/">Church Resource Hub</a> · <a href="https://pastorhandbook.vercel.app">The Pastor's Handbook</a> · <a href="https://theologycompare.vercel.app">Comparative Theology</a> · <a href="https://theologybot.vercel.app">Theology and Practice</a></p>
 </footer>
 
 <script>
