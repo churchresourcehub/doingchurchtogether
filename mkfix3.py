@@ -47,13 +47,13 @@ print("vw-open")
 
 # horizontal botA
 body = f'<div class="card"><div class="kick">{BOT_KICK}</div><div class="line">{BOT_LINE}</div></div>'
-shot(BASE.format(W=1920, H=1080, pos="left:84px;bottom:130px", maxw=820, accent="#9aa3c8", size=42, kick=24, tmaxw=0, body=body),
+shot(BASE.format(W=1920, H=1080, pos="left:50%;top:50%;transform:translate(-50%,-50%)", maxw=820, accent="#9aa3c8", size=42, kick=24, tmaxw=0, body=body),
      os.path.join(OUT, "w-botA.png"), 1920, 1080)
 print("w-botA")
 
 # vertical botA
 body = f'<div class="card"><div class="kick">{BOT_KICK}</div><div class="line">{BOT_LINE}</div></div>'
-shot(BASE.format(W=1080, H=1920, pos="left:90px;top:800px", maxw=810, accent="#9aa3c8", size=44, kick=28, tmaxw=0, body=body),
+shot(BASE.format(W=1080, H=1920, pos="left:50%;top:50%;transform:translate(-50%,-50%)", maxw=810, accent="#9aa3c8", size=44, kick=28, tmaxw=0, body=body),
      os.path.join(OUT, "vw-botA.png"), 1080, 1920)
 print("vw-botA")
 
