@@ -76,8 +76,8 @@ CARDS = [
      "How the Christian traditions relate, in what they believe and how they branched.",
      "#c98b8b", 42, "left:84px;bottom:96px", 860),
     ("w-compB", "Comparative Theology",
-     "Maps, spectrums, and a doctrine matrix, each tradition drawn fairly from its own voice.",
-     "#c98b8b", 42, "left:84px;bottom:96px", 880),
+     "Maps, spectrums, and an interactive assistant that answers your questions from each tradition's own sources.",
+     "#c98b8b", 42, "left:84px;bottom:96px", 900),
 ]
 for name, kick, line, accent, size, pos, maxw in CARDS:
     body = f'<div class="card"><div class="kick">{kick}</div><div class="line">{line}</div></div>'

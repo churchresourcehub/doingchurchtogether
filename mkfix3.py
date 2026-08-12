@@ -56,3 +56,15 @@ body = f'<div class="card"><div class="kick">{BOT_KICK}</div><div class="line">{
 shot(BASE.format(W=1080, H=1920, pos="left:90px;top:800px", maxw=810, accent="#9aa3c8", size=44, kick=28, tmaxw=0, body=body),
      os.path.join(OUT, "vw-botA.png"), 1080, 1920)
 print("vw-botA")
+
+# comparative caption B: mentions the interactive assistant (added 8/12 evening)
+COMP_KICK = "Comparative Theology"
+COMP_LINE = "Maps, spectrums, and an interactive assistant that answers your questions from each tradition's own sources."
+body = f'<div class="card"><div class="kick">{COMP_KICK}</div><div class="line">{COMP_LINE}</div></div>'
+shot(BASE.format(W=1920, H=1080, pos="left:84px;bottom:96px", maxw=900, accent="#c98b8b", size=42, kick=24, tmaxw=0, body=body),
+     os.path.join(OUT, "w-compB.png"), 1920, 1080)
+print("w-compB")
+body = f'<div class="card"><div class="kick">{COMP_KICK}</div><div class="line">{COMP_LINE}</div></div>'
+shot(BASE.format(W=1080, H=1920, pos="left:90px;top:800px", maxw=810, accent="#c98b8b", size=44, kick=28, tmaxw=0, body=body),
+     os.path.join(OUT, "vw-compB.png"), 1080, 1920)
+print("vw-compB")
