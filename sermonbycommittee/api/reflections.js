@@ -1,6 +1,7 @@
 import { createHash, randomUUID, timingSafeEqual } from 'node:crypto';
-import { put, list, del } from '@vercel/blob';
+import { put, del } from '@vercel/blob';
 import { findWeek } from '../lib/weeks.js';
+import { blobPath, listBlobs, parsePath, readPosts, send } from '../lib/store.js';
 
 // SHA-256 of the admin key. The key itself lives only with the pastor;
 // visiting the site once with ?admin=<key> turns on the delete buttons.
@@ -24,35 +25,9 @@ async function readBody(req) {
   return JSON.parse(Buffer.concat(chunks).toString('utf8') || '{}');
 }
 
-async function listBlobs(prefix) {
-  const blobs = [];
-  let cursor;
-  do {
-    const page = await list({ prefix, cursor, limit: 1000 });
-    blobs.push(...page.blobs);
-    cursor = page.hasMore ? page.cursor : undefined;
-  } while (cursor);
-  return blobs;
-}
-
 async function getReflections(week) {
-  const blobs = await listBlobs(`reflections/${week}/`);
-  const posts = await Promise.all(blobs.map(async b => {
-    try {
-      const r = await fetch(b.url, { cache: 'no-store' });
-      return r.ok ? await r.json() : null;
-    } catch {
-      return null;
-    }
-  }));
-  return posts.filter(Boolean).sort((a, b) => a.createdAt.localeCompare(b.createdAt));
-}
-
-function send(res, status, obj) {
-  res.statusCode = status;
-  res.setHeader('content-type', 'application/json; charset=utf-8');
-  res.setHeader('cache-control', 'no-store');
-  res.end(JSON.stringify(obj));
+  const posts = await readPosts(await listBlobs(`reflections/${week}/`));
+  return posts.sort((a, b) => a.createdAt.localeCompare(b.createdAt));
 }
 
 export default async function handler(req, res) {
@@ -85,7 +60,7 @@ export default async function handler(req, res) {
         parentId,
         createdAt: new Date().toISOString(),
       };
-      await put(`reflections/${week.slug}/${post.createdAt.replace(/[:.]/g, '-')}_${post.id}.json`, JSON.stringify(post), {
+      await put(blobPath(post), JSON.stringify(post), {
         access: 'public',
         addRandomSuffix: false,
         contentType: 'application/json',
@@ -98,13 +73,12 @@ export default async function handler(req, res) {
       const week = findWeek(req.query.week);
       const id = String(req.query.id || '');
       if (!week || !id) return send(res, 400, { error: 'Missing week or id' });
-      const blobs = await listBlobs(`reflections/${week.slug}/`);
-      const posts = await getReflections(week.slug);
       // Removing a reflection also removes the replies under it.
-      const doomed = new Set(posts.filter(p => p.id === id || p.parentId === id).map(p => p.id));
-      const urls = blobs.filter(b => [...doomed].some(d => b.pathname.endsWith(`_${d}.json`))).map(b => b.url);
-      if (urls.length) await del(urls);
-      return send(res, 200, { deleted: [...doomed] });
+      const doomed = (await listBlobs(`reflections/${week.slug}/`))
+        .map(b => ({ b, meta: parsePath(b.pathname) }))
+        .filter(({ meta }) => meta && (meta.id === id || meta.parentId === id));
+      if (doomed.length) await del(doomed.map(d => d.b.url));
+      return send(res, 200, { deleted: doomed.map(d => d.meta.id) });
     }
 
     res.setHeader('allow', 'GET, POST, DELETE');

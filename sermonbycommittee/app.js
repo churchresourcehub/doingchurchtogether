@@ -14,6 +14,20 @@
   const adminKey = () => store.get('sbc-admin');
 
   let weeks = [];
+
+  // "New" markers: activity newer than this browser's last look at a week.
+  if (!store.get('sbc-first')) store.set('sbc-first', new Date().toISOString());
+  const seenAt = slug => [store.get(`sbc-seen-${slug}`), store.get('sbc-first')].filter(Boolean).sort().at(-1);
+  const isNew = (iso, slug) => !!iso && iso > seenAt(slug);
+  const ago = iso => {
+    const m = Math.round((Date.now() - new Date(iso)) / 60000);
+    if (m < 1) return 'just now';
+    if (m < 60) return `${m} min ago`;
+    const h = Math.round(m / 60);
+    if (h < 24) return `${h} hour${h === 1 ? '' : 's'} ago`;
+    const d = Math.round(h / 24);
+    return d < 7 ? `${d} day${d === 1 ? '' : 's'} ago` : new Date(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  };
   const scriptureCache = new Map();
 
   const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -21,6 +35,9 @@
   const day = iso => new Date(iso + 'T12:00:00');
   const fmtDay = iso => day(iso).toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
   const fmtShort = iso => day(iso).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  const initials = n => n.trim().split(/\s+/).slice(0, 2).map(x => x[0]).join('').toUpperCase();
+  const hue = n => [...n.toLowerCase()].reduce((h, c) => (h * 31 + c.charCodeAt(0)) % 360, 7);
+  const avatar = (n, small) => `<span class="avatar${small ? ' small' : ''}" style="--h:${hue(n)}" aria-hidden="true">${esc(initials(n))}</span>`;
   const fmtStamp = iso => new Date(iso).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
   const todayIso = () => new Date().toLocaleDateString('en-CA');
 
@@ -33,50 +50,99 @@
   function renderHome() {
     document.title = 'Sermon By Committee';
     const now = currentWeek();
+    const name = store.get('sbc-name');
     app.innerHTML = `
-      <section class="intro">
-        <p>Each Sunday evening the class reads the lectionary texts for the coming Sunday together, and what the room finds shapes the sermon. This page keeps that conversation going for the weeks you can't be there, and for the thoughts that come to you on Tuesday.</p>
-        <p>Open a week to read the texts and add what you noticed. You can reply to what others have written too.</p>
+      <section class="hero">
+        <div class="hero-text">
+          <span class="eyebrow">${name ? `Welcome back, ${esc(name.split(' ')[0])}` : 'Welcome to the table'}</span>
+          <h1>Read with us.</h1>
+          <p>Every Sunday evening a group of us sits down with the lectionary texts for the coming Sunday, and what we find together shapes the sermon. This is where that conversation carries on during the week, whether you missed a Sunday or thought of something on Tuesday.</p>
+          <p>Nobody here is expected to be a scholar. A question counts. So does a phrase that stuck with you.</p>
+        </div>
+        <figure class="verse">
+          <blockquote>Without counsel, plans go wrong, but with many advisers they succeed.</blockquote>
+          <figcaption>Proverbs 15:22</figcaption>
+        </figure>
       </section>
-      <a class="now card" href="#/${now.slug}">
-        <span class="eyebrow">This week</span>
-        <span class="now-title">Texts for ${fmtDay(now.sunday)}</span>
-        <span class="now-sub">${esc(now.title)} · ${now.readings.map(r => esc(r.ref)).join(' · ')}</span>
-        <span class="go">Read and reflect →</span>
+
+      <a class="now color-${now.color}" href="#/${now.slug}">
+        <span class="eyebrow">This week · class meets ${fmtDay(now.classDate)}</span>
+        <span class="now-title">${esc(now.theme)}</span>
+        <span class="now-sub">Texts for ${fmtDay(now.sunday)} · ${now.readings.map(r => esc(r.ref)).join(' · ')}</span>
+        <span class="now-foot"><span class="btn">Read and reflect</span><span class="now-count" data-count="${now.slug}"></span></span>
       </a>
-      <h2 class="section-h">All weeks</h2>
+
+      <section class="activity">
+        <h2 class="section-h">Recent activity</h2>
+        <div id="recent"><p class="loading">Checking for new reflections…</p></div>
+      </section>
+
+      <section class="how">
+        <div><span class="how-n">1</span><h3>Sit with the texts</h3><p>Each week has all four readings printed in full. Read one or read them all, whatever time allows.</p></div>
+        <div><span class="how-n">2</span><h3>Add your voice</h3><p>Write what you noticed, then read what others saw and reply. Just your name, no account needed.</p></div>
+      </section>
+
+      <h2 class="section-h">The season</h2>
       <ol class="weeks">
         ${weeks.map(w => `
           <li>
-            <a href="#/${w.slug}" class="${w === now ? 'is-now' : ''}">
-              <span class="wk-date">Class ${fmtShort(w.classDate)}</span>
+            <a href="#/${w.slug}" class="color-${w.color}${w === now ? ' is-now' : ''}">
+              <span class="wk-date"><span class="wk-mon">${day(w.sunday).toLocaleDateString('en-US', { month: 'short' })}</span><span class="wk-day">${day(w.sunday).getDate()}</span></span>
               <span class="wk-main">
-                <span class="wk-title">${esc(w.title)} <span class="wk-for">for ${fmtShort(w.sunday)}</span></span>
-                <span class="wk-refs">${w.readings.find(r => r.key === 'gospel').ref}</span>
+                <span class="wk-title">${esc(w.theme)}${w === now ? ' <span class="badge">This week</span>' : ''}</span>
+                <span class="wk-refs">${esc(w.title)} · ${esc(w.readings.find(r => r.key === 'gospel').ref)} · class ${fmtShort(w.classDate)}</span>
               </span>
-              <span class="wk-count" data-count="${w.slug}"></span>
+              <span class="wk-side"><span class="wk-new" data-new="${w.slug}"></span><span class="wk-count" data-count="${w.slug}"></span></span>
             </a>
           </li>`).join('')}
       </ol>`;
-    weeks.forEach(async w => {
-      try {
-        const { reflections } = await api(`/api/reflections?week=${w.slug}`);
-        const n = reflections.filter(r => !r.parentId).length;
-        const el = app.querySelector(`[data-count="${w.slug}"]`);
-        if (el && n) el.textContent = `${n} reflection${n === 1 ? '' : 's'}`;
-      } catch {}
-    });
+    loadActivity();
+  }
+
+  async function loadActivity() {
+    const box = app.querySelector('#recent');
+    let data;
+    try {
+      data = await api('/api/recent');
+    } catch {
+      box.innerHTML = '<p class="empty">Recent activity didn\'t load. Refresh to try again.</p>';
+      return;
+    }
+    for (const w of weeks) {
+      const s = data.summary[w.slug];
+      const n = s.reflections + s.replies;
+      app.querySelectorAll(`[data-count="${w.slug}"]`).forEach(el => {
+        if (n) el.textContent = `${s.reflections} reflection${s.reflections === 1 ? '' : 's'}${s.replies ? ` · ${s.replies} repl${s.replies === 1 ? 'y' : 'ies'}` : ''}`;
+      });
+      const nw = app.querySelector(`[data-new="${w.slug}"]`);
+      if (nw && isNew(s.latest, w.slug)) nw.innerHTML = '<span class="new-dot">New</span>';
+    }
+    const wk = slug => weeks.find(w => w.slug === slug);
+    box.innerHTML = data.recent.length ? `<ul class="feed">${data.recent.map(p => `
+      <li>
+        <a href="#/${p.week}/${p.parentId || p.id}">
+          ${avatar(p.name, true)}
+          <span class="feed-main">
+            <span class="feed-line"><strong>${esc(p.name)}</strong> ${p.parentId ? `replied to ${esc(p.replyTo || 'a reflection')}` : 'shared a reflection'} on <em>${esc(wk(p.week).theme)}</em>${isNew(p.createdAt, p.week) ? ' <span class="new-dot">New</span>' : ''}</span>
+            <span class="feed-snip">${esc(p.body.length >= 220 ? p.body.slice(0, 200).trim() + '…' : p.body)}</span>
+            <span class="feed-when">${ago(p.createdAt)}</span>
+          </span>
+        </a>
+      </li>`).join('')}</ul>` : '<p class="empty">Quiet so far. The first reflections will show up here.</p>';
   }
 
   // ---------- Week ----------
-  function renderWeek(week) {
+  function renderWeek(week, focusId) {
+    state.seenBefore = seenAt(week.slug);
+    state.focusId = focusId;
     document.title = `${week.title} · Sermon By Committee`;
     const gospel = week.readings.find(r => r.key === 'gospel');
     app.innerHTML = `
       <a class="back" href="#/">← All weeks</a>
-      <header class="week-head">
+      <header class="week-head color-${week.color}">
         <span class="eyebrow">${esc(week.title)} · Class meets ${fmtDay(week.classDate)}</span>
-        <h1>Texts for ${fmtDay(week.sunday)}</h1>
+        <h1>${esc(week.theme)}</h1>
+        <p class="week-when">Texts for ${fmtDay(week.sunday)}</p>
         <p class="week-intro">${esc(week.intro)}</p>
       </header>
 
@@ -90,7 +156,8 @@
       ${adminKey() ? `<p class="admin-note">Delete buttons are on for this browser. <button class="linkish" id="admin-off">Turn off</button></p>` : ''}
 
       <section class="card compose">
-        <h2>Add your reflection</h2>
+        <h2>Add your voice</h2>
+        <p class="compose-sub">There's no wrong way to do this. A few sentences is plenty.</p>
         <form id="new-post">
           <div class="row">
             <label>Your name<input name="name" maxlength="60" autocomplete="name" required></label>
@@ -103,13 +170,13 @@
           </div>
           <label>What did you notice?<textarea name="body" rows="6" maxlength="8000" required placeholder="A question, a phrase that caught you, a connection between the texts, where this meets your life…"></textarea></label>
           <input name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <div class="actions"><span class="form-msg" role="status"></span><button type="submit" class="btn">Share</button></div>
+          <div class="actions"><span class="form-msg" role="status"></span><button type="submit" class="btn">Share with the group</button></div>
         </form>
       </section>
 
       <section class="reflections">
         <div class="ref-head">
-          <h2>Reflections</h2>
+          <h2>What the group is noticing</h2>
           <div class="filters" id="filters"></div>
         </div>
         <div id="list"><p class="loading">Loading reflections…</p></div>
@@ -141,7 +208,7 @@
           body: { week: week.slug, name: form.name.value, reading: form.reading.value, body: form.body.value, website: form.website.value },
         });
         form.body.value = '';
-        msg.textContent = 'Thank you. Your reflection is below.';
+        msg.textContent = 'Thank you for sharing. Your reflection is below.';
         await loadReflections(week);
       } catch (err) {
         msg.textContent = err.message;
@@ -168,7 +235,7 @@
     const note = /\d[a-c]\b/.test(reading.ref)
       ? `<p class="part-note">The lectionary reading is ${esc(reading.ref)}; the full verse is shown here.</p>` : '';
     box.innerHTML = head + (data.html
-      ? `<div class="text">${data.html}</div>${note}<p class="src"><a href="${data.link}" target="_blank" rel="noopener">Open on Bible Gateway</a></p>`
+      ? `<div class="passage-body">${data.html}</div>${note}<p class="src"><a href="${data.link}" target="_blank" rel="noopener">Open on Bible Gateway</a></p>`
       : `<p>The text didn't load. <a href="${data.link || fallbackLink}" target="_blank" rel="noopener">Read ${esc(reading.ref)} on Bible Gateway</a>.</p>`);
   }
 
@@ -181,6 +248,12 @@
       const { reflections } = await api(`/api/reflections?week=${week.slug}`);
       state.posts = reflections;
       drawReflections(week);
+      store.set(`sbc-seen-${week.slug}`, new Date().toISOString());
+      if (state.focusId) {
+        const el = app.querySelector(`#p-${state.focusId}`);
+        if (el) { el.scrollIntoView({ behavior: 'smooth', block: 'center' }); el.classList.add('flash'); }
+        state.focusId = null;
+      }
     } catch (err) {
       list.innerHTML = `<p class="empty">Couldn't load reflections: ${esc(err.message)}</p>`;
     }
@@ -193,6 +266,7 @@
     const tops = state.posts.filter(p => !p.parentId).reverse();
     const replies = id => state.posts.filter(p => p.parentId === id);
     const label = key => (week.readings.find(r => r.key === key) || {}).ref;
+    const fresh = p => p.createdAt > state.seenBefore && p.name !== store.get('sbc-name');
 
     const used = week.readings.filter(r => tops.some(p => p.reading === r.key));
     filters.innerHTML = used.length ? [['', 'All'], ...used.map(r => [r.key, r.ref])]
@@ -201,21 +275,22 @@
 
     const shown = state.filter ? tops.filter(p => p.reading === state.filter) : tops;
     if (!tops.length) {
-      list.innerHTML = '<p class="empty">No reflections yet. Yours could be the first.</p>';
+      list.innerHTML = '<p class="empty">Nobody has written yet this week. Yours could be the first.</p>';
       return;
     }
     const del = p => adminKey() ? `<button class="linkish danger" data-del="${p.id}">Delete</button>` : '';
     list.innerHTML = shown.map(p => `
       <article class="card post" id="p-${p.id}">
         <header>
+          ${avatar(p.name)}
           <strong>${esc(p.name)}</strong>
-          <span class="meta">${fmtStamp(p.createdAt)}${p.reading ? ` · <span class="pill">${esc(label(p.reading))}</span>` : ''}</span>
+          <span class="meta">${fmtStamp(p.createdAt)}${fresh(p) ? ' <span class="new-dot">New</span>' : ''}${p.reading ? ` · <span class="pill">${esc(label(p.reading))}</span>` : ''}</span>
         </header>
         <div class="body">${paras(p.body)}</div>
         <div class="replies">
           ${replies(p.id).map(r => `
             <div class="reply" id="p-${r.id}">
-              <header><strong>${esc(r.name)}</strong><span class="meta">${fmtStamp(r.createdAt)}</span>${del(r)}</header>
+              <header>${avatar(r.name, true)}<strong>${esc(r.name)}</strong><span class="meta">${fmtStamp(r.createdAt)}${fresh(r) ? ' <span class="new-dot">New</span>' : ''}</span>${del(r)}</header>
               <div class="body">${paras(r.body)}</div>
             </div>`).join('')}
         </div>
@@ -271,9 +346,9 @@
   }
 
   function route() {
-    const slug = location.hash.replace(/^#\/?/, '');
+    const [slug, postId] = location.hash.replace(/^#\/?/, '').split('/');
     const week = weeks.find(w => w.slug === slug);
-    week ? renderWeek(week) : renderHome();
+    week ? renderWeek(week, postId) : renderHome();
     window.scrollTo(0, 0);
   }
 
