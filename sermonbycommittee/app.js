@@ -47,17 +47,6 @@
   const gospelOf = w => w.readings.find(r => r.key === 'gospel');
   const colorName = w => (w.color === 'white' ? 'White' : 'Green');
 
-  const TABLE_ART = `
-    <svg class="table-art" viewBox="0 0 400 400" aria-hidden="true">
-      <circle cx="200" cy="200" r="92" fill="none" stroke="currentColor" stroke-width="1.5"/>
-      <circle cx="200" cy="200" r="150" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 7"/>
-      ${Array.from({ length: 12 }, (_, i) => {
-        const a = (i / 12) * Math.PI * 2 - Math.PI / 2;
-        return `<circle cx="${(200 + Math.cos(a) * 124).toFixed(1)}" cy="${(200 + Math.sin(a) * 124).toFixed(1)}" r="${i % 3 === 0 ? 13 : 10}" fill="currentColor" opacity="${i % 4 === 1 ? 0.45 : 0.9}"/>`;
-      }).join('')}
-      <path d="M170 196 q30 -18 60 0 M170 208 q30 -18 60 0" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".7"/>
-    </svg>`;
-
   // ---------- Home ----------
   function renderHome(section) {
     document.title = 'Sermon By Committee · Spanish Fort UMC';
@@ -82,7 +71,6 @@
             <span class="tw-refs">${now.readings.map(r => esc(r.ref)).join('<br>')}</span>
             <span class="tw-foot"><span>Class meets ${fmtLong(now.classDate)}</span><span class="tw-count" data-count="${now.slug}"></span></span>
           </a>
-          ${TABLE_ART}
         </div>
       </section>
 

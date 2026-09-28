@@ -113,9 +113,15 @@ img, svg { display: block; }
 .hero {
   position: relative;
   overflow: hidden;
-  background: var(--ink) var(--grain);
+  background-color: var(--ink);
+  background-image:
+    linear-gradient(90deg, rgba(24, 33, 48, .96) 0%, rgba(24, 33, 48, .86) 42%, rgba(24, 33, 48, .5) 75%, rgba(24, 33, 48, .35) 100%),
+    linear-gradient(0deg, rgba(24, 33, 48, .6), transparent 40%),
+    url("/img/sanctuary-2400.jpg");
+  background-size: cover;
+  background-position: center 14%;
   color: var(--paper);
-  padding: 88px 0 96px;
+  padding: 112px 0 120px;
 }
 .hero::after {
   content: ""; position: absolute; inset: auto 0 0 0; height: 6px;
@@ -133,10 +139,6 @@ img, svg { display: block; }
 .hero-actions { display: flex; align-items: center; gap: 26px; margin-top: 34px; flex-wrap: wrap; }
 .hero .text-link { color: var(--paper); }
 .hero .text-link:hover { color: var(--gold-soft); }
-.table-art {
-  position: absolute; right: -150px; top: 50%; width: 560px; transform: translateY(-50%);
-  color: var(--gold-soft); opacity: .09; pointer-events: none;
-}
 
 .this-week {
   position: relative; z-index: 1;
@@ -350,9 +352,14 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--a
 }
 @media (max-width: 440px) {
   .nav a[data-nav="season"] { display: none; }
-  .hero { padding: 56px 0 64px; }
+  .hero {
+    padding: 56px 0 64px;
+    background-image:
+      linear-gradient(180deg, rgba(24, 33, 48, .78) 0%, rgba(24, 33, 48, .9) 55%, rgba(24, 33, 48, .97) 100%),
+      url("/img/sanctuary-1200.jpg");
+    background-position: 60% top;
+  }
   .lede { font-size: 1.08rem; }
-  .table-art { width: 420px; right: -210px; top: 120px; transform: none; }
   .this-week { padding: 22px 20px 18px; }
   .tw-day { font-size: 2.6rem; }
   .tw-theme { font-size: 1.35rem; }
