@@ -119,7 +119,7 @@ img, svg { display: block; }
     linear-gradient(0deg, rgba(24, 33, 48, .6), transparent 40%),
     url("/img/sanctuary-2400.jpg");
   background-size: cover;
-  background-position: center 14%;
+  background-position: center 30%;
   color: var(--paper);
   padding: 112px 0 120px;
 }
@@ -128,6 +128,14 @@ img, svg { display: block; }
   background: linear-gradient(90deg, var(--green) 0 72%, var(--gold) 72% 86%, var(--accent) 86%);
 }
 .hero-grid { position: relative; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: 72px; align-items: center; }
+/* Desktop: the card hangs off the bottom of the photo so the rose window stays visible above it */
+@media (min-width: 981px) {
+  .hero { overflow: visible; padding-bottom: 96px; }
+  .hero-grid { align-items: end; }
+  .hero-copy { align-self: center; padding-bottom: 60px; }
+  .this-week { margin-bottom: -190px; }
+  .hero + .band-paper { padding-top: 170px; }
+}
 .hero .kicker { color: var(--gold-soft); }
 .hero h1 {
   font-family: var(--display); font-weight: 400; font-size: clamp(2.6rem, 5.4vw, 4.4rem);
