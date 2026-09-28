@@ -1,0 +1,5 @@
+{
+  "redirects": [
+    { "source": "/sermonbycommittee/:path*", "destination": "https://sermonbycommittee.vercel.app/", "permanent": false }
+  ]
+}
