@@ -58,7 +58,7 @@
           <div class="hero-copy rise">
             <p class="kicker">${name ? `Welcome back, ${esc(name.split(' ')[0])}` : 'Sunday evenings · Fall 2026'}</p>
             <h1>The sermon starts <em>around the table.</em></h1>
-            <p class="lede">Each Sunday evening a group of us reads the coming Sunday's lectionary texts together, and what we find shapes the sermon. This is where the conversation continues between meetings.</p>
+            <p class="lede">Reading scripture in community is as old a practice as scripture itself. Each Sunday evening we read the coming Sunday's texts together, and what we find shapes the sermon. On the weeks we can't meet, or you can't be there, the conversation continues here.</p>
             <div class="hero-actions">
               <a class="btn" href="#/${now.slug}">Read this week's texts</a>
               <a class="text-link" href="#/about">How it works</a>
@@ -114,10 +114,37 @@
             <figcaption>Proverbs 15:22</figcaption>
           </figure>
           <div class="about-copy">
-            <h2>Why a committee?</h2>
-            <p>Committees get a bad name, but the church has done much of its best discernment in rooms full of people reading scripture together. This class trusts that a sermon comes out better when many of us have handled the text first.</p>
-            <p>You don't need to be a scholar to take part. Read the passages for the week, then write down what caught your attention, even if it's only a question or a phrase you can't shake. Reply to what others notice. Missed a Sunday? Your reflection still makes it into the room.</p>
+            <h2>An old practice, picked back up</h2>
+            <p>Reading scripture in community is as old a practice as scripture itself. Much of what is in the Bible began as stories told aloud, and most of the New Testament is letters that were read out loud to gathered congregations. This series and our Discipleship Group pick that practice back up in a new way.</p>
+            <p>Each week you are encouraged to read the passages and offer your reflections. You can share them in person on Sunday nights, or type your notes here for the weeks we won't meet or when you are unable to attend.</p>
           </div>
+        </div>
+
+        <div class="wrap twice">
+          <h3 class="twice-head">If you are able, read the passages twice</h3>
+          <div class="twice-grid">
+            <div class="reading-step">
+              <span class="step-num">First reading</span>
+              <h4>Read devotionally</h4>
+              <p>Read the text for what it is. Let it be a vehicle to discover what God might be saying to you.</p>
+            </div>
+            <div class="reading-step">
+              <span class="step-num">Second reading</span>
+              <h4>Read with questions</h4>
+              <p>Read again and ask questions. Some of your reflections may be more questions than answers, and that is fine. Questions are not off limits.</p>
+            </div>
+          </div>
+          <p class="q-intro">When you engage the text, don't be afraid to ask things like:</p>
+          <ul class="questions">
+            <li>What does this word mean?</li>
+            <li>Why is this person saying this?</li>
+            <li>How long did it take them to travel?</li>
+            <li>Didn't I read that earlier?</li>
+            <li>What's the context of this statement?</li>
+            <li>I'm not sure I agree with this. Is that okay?</li>
+            <li>Why would God do that?</li>
+            <li>Who is related to whom?</li>
+          </ul>
         </div>
       </section>`;
 
