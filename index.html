@@ -147,7 +147,7 @@
   /* ---------- Three-up image row ---------- */
   .trio {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 4px;
     background: var(--band);
     border-bottom: 10px solid var(--band);
@@ -252,7 +252,7 @@
     gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
-    max-width: 1060px;
+    max-width: 1300px;
     margin: 0 auto;
   }
   .fit-card {
@@ -299,7 +299,6 @@
 
   @media (max-width: 1080px) {
     .trio { grid-template-columns: repeat(2, 1fr); }
-    .trio a:last-child { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
   }
   @media (max-width: 860px) {
     .band nav {
@@ -418,11 +417,15 @@
     <img src="assets/tall-comparative.png" alt="Comparative Theology: the Christian traditions plotted on a two-axis map of what they believe.">
     <span class="tag-bar"><span class="k">The Compass</span><span class="t">Comparative Theology</span></span>
   </a>
+  <a href="https://churchresourcehub.github.io/table/">
+    <img src="assets/tall-table.png" alt="The Table: a feed of clergy conversations by ministry area, with new library resources at the top.">
+    <span class="tag-bar"><span class="k">The Conversation</span><span class="t">The Table</span></span>
+  </a>
 </div>
 
 <section class="fit reveal">
   <h2>How they fit together</h2>
-  <p>Start anywhere. The three resources grew out of one congregation's rebuild, and they were built to hand ministry on rather than hold it close, because nothing faithful should have to be invented twice.</p>
+  <p>Start anywhere. These pieces grew out of one congregation's rebuild, and they were built to hand ministry on rather than hold it close, because nothing faithful should have to be invented twice.</p>
   <div class="fit-cards">
     <div class="fit-card">
       <div class="label">Grab a tool</div>
@@ -438,6 +441,11 @@
       <div class="label">Find your bearings</div>
       <h3>Comparative Theology</h3>
       <p>You want to know where your tradition stands among the others. Compare the churches on what they believe and how they branched, and find the common ground you already share.</p>
+    </div>
+    <div class="fit-card">
+      <div class="label">Ask a colleague</div>
+      <h3>The Table</h3>
+      <p>You have a question the library cannot answer yet, or an answer a colleague needs. Post it, reply to others, and keep what you learn where the next pastor can find it.</p>
     </div>
   </div>
 </section>
