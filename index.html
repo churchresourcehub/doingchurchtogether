@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Doing Church Together | The Hub, the Handbook, Comparative Theology, and The Table</title>
+<title>Doing Church Together | The Hub, Comparative Theology, and The Table</title>
 <meta name="theme-color" content="#1f2a3c">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%231f2a3c'/><circle cx='32' cy='32' r='11' fill='none' stroke='%23e8c98a' stroke-width='3'/><g fill='%23f4efe6'><circle cx='32' cy='12' r='4'/><circle cx='52' cy='32' r='4'/><circle cx='32' cy='52' r='4'/><circle cx='12' cy='32' r='4'/></g></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%231f2a3c'/><circle cx='32' cy='32' r='11' fill='none' stroke='%23e8c98a' stroke-width='3'/><g fill='%23f4efe6'><circle cx='32' cy='12' r='4'/><circle cx='49.3' cy='42' r='4'/><circle cx='14.7' cy='42' r='4'/></g></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -118,7 +118,7 @@
   }
   .hero::after {
     content: ""; position: absolute; inset: auto 0 0 0; height: 6px;
-    background: linear-gradient(90deg, var(--green) 0 25%, var(--gold) 25% 50%, var(--accent) 50% 75%, var(--periwinkle) 75%);
+    background: linear-gradient(90deg, var(--green) 0 33.34%, var(--accent) 33.34% 66.67%, var(--periwinkle) 66.67%);
   }
   .hero-grid { position: relative; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: 72px; align-items: center; }
   .hero .kicker { color: var(--gold-soft); }
@@ -144,14 +144,17 @@
   .doors-label { font-family: var(--sans); font-size: .74rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
   .doors ol { list-style: none; }
   .doors li + li { border-top: 1px solid var(--rule-soft); }
-  .doors a { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; padding: 13px 0; text-decoration: none; }
+  .doors li a { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; padding: 13px 0; text-decoration: none; }
   .d-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--door); box-shadow: 0 0 0 1px rgba(0, 0, 0, .08); }
   .d-text { display: flex; flex-direction: column; line-height: 1.25; }
   .d-k { font-family: var(--sans); font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
   .d-t { font-family: var(--display); font-size: 1.25rem; color: var(--ink); }
   .d-arrow { font-family: var(--sans); color: var(--muted); transition: transform .2s ease, color .2s ease; }
-  .doors a:hover .d-t { color: var(--accent); }
-  .doors a:hover .d-arrow { transform: translateX(3px); color: var(--accent); }
+  .doors li a:hover .d-t { color: var(--accent); }
+  .doors li a:hover .d-arrow { transform: translateX(3px); color: var(--accent); }
+  .doors-more { margin-top: 4px; padding: 12px 0 6px; border-top: 1px solid var(--rule); font-family: var(--sans); font-size: .82rem; color: var(--muted); }
+  .doors-more a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .doors-more a:hover { color: var(--accent); border-bottom-color: currentColor; }
 
   @media (min-width: 981px) {
     .hero { padding-bottom: 96px; }
@@ -192,7 +195,7 @@
   .copy a.inline:hover { color: var(--accent-deep); }
 
   /* ---------- Tile row ---------- */
-  .tiles { background: var(--ink); display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; border-bottom: 1px solid var(--ink); }
+  .tiles { background: var(--ink); display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; border-bottom: 1px solid var(--ink); }
   .tiles a { position: relative; display: block; aspect-ratio: 4 / 5; overflow: hidden; color: var(--paper); text-decoration: none; }
   .tiles img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform .7s ease, filter .7s ease; filter: saturate(.9); }
   .tiles a:hover img { transform: scale(1.04); filter: saturate(1); }
@@ -211,7 +214,7 @@
   .sec-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: end; margin-bottom: 44px; padding-bottom: 20px; border-bottom: 1px solid var(--rule); }
   .sec-head h2 { font-family: var(--display); font-weight: 400; font-size: clamp(2rem, 3.4vw, 2.8rem); line-height: 1.05; letter-spacing: -.015em; color: var(--ink); margin-top: 10px; }
   .sec-head > p { font-family: var(--sans); font-size: .95rem; color: var(--muted); max-width: 32em; justify-self: end; }
-  .fit-grid { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); }
+  .fit-grid { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); }
   .fit-grid li { border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
   .fit-grid a { position: relative; display: flex; flex-direction: column; height: 100%; padding: 28px 26px 26px; text-decoration: none; transition: background .25s ease; }
   .fit-grid a::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--door); transform: scaleX(0); transform-origin: left; transition: transform .35s ease; }
@@ -241,6 +244,11 @@
   .shot-wide a { display: block; border: 1px solid rgba(244, 239, 230, .2); padding: 10px; background: rgba(255, 255, 255, .04); box-shadow: 0 40px 80px -40px rgba(0, 0, 0, .7); transition: transform .3s ease; }
   .shot-wide a:hover { transform: translateY(-3px); }
   .shot-wide img { width: 100%; background: #fff; }
+  .extra-intro { margin-bottom: 56px; padding-bottom: 22px; border-bottom: 1px solid rgba(244, 239, 230, .16); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: end; }
+  .extra-intro h2 { font-style: normal; font-weight: 400; margin-top: 10px; }
+  .extra-intro > p { font-family: var(--sans); font-size: .95rem; color: rgba(244, 239, 230, .72); max-width: 32em; justify-self: end; margin: 0; }
+  .extra-block + .extra-block { margin-top: 88px; padding-top: 72px; border-top: 1px solid rgba(244, 239, 230, .16); }
+  .extra .aud { margin-top: 14px; font-family: var(--sans); font-size: .88rem; color: var(--gold-soft); }
 
   /* ---------- Footer ---------- */
   .site-foot { background: var(--ink) var(--grain); color: rgba(244, 239, 230, .7); padding: 60px 0 64px; font-family: var(--sans); font-size: .88rem; }
@@ -266,8 +274,6 @@
   /* ---------- Responsive ---------- */
   @media (max-width: 1080px) {
     .nav { gap: 18px; font-size: .85rem; }
-    .tiles { grid-template-columns: repeat(2, 1fr); }
-    .fit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 980px) {
     .hero-grid { grid-template-columns: 1fr; gap: 48px; }
@@ -276,6 +282,11 @@
     .resource.alt .shot { order: 0; }
     .shot { position: static; }
     .extra-grid { grid-template-columns: 1fr; gap: 36px; }
+    .extra-intro { grid-template-columns: 1fr; gap: 12px; }
+    .extra-intro > p { justify-self: start; }
+    .tiles { grid-template-columns: 1fr; }
+    .tiles a { aspect-ratio: 16 / 10; }
+    .fit-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 900px) {
     .mast-inner { flex-direction: column; align-items: stretch; height: auto; gap: 0; padding-top: 12px; }
@@ -300,6 +311,7 @@
     .doors { padding: 22px 20px 10px; }
     .resource, .fit { padding: 60px 0; }
     .extra { padding: 64px 0; }
+    .extra-block + .extra-block { margin-top: 56px; padding-top: 48px; }
     .shot-wide { margin-top: 44px; padding-top: 40px; }
     .sec-head { grid-template-columns: 1fr; gap: 10px; margin-bottom: 28px; }
     .sec-head > p { justify-self: start; }
@@ -315,15 +327,14 @@
 <header class="masthead">
   <div class="wrap mast-inner">
     <a class="brand" href="#">
-      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="11" fill="none" stroke="currentColor" stroke-width="2.5"/><g fill="currentColor"><circle cx="32" cy="12" r="4"/><circle cx="52" cy="32" r="4"/><circle cx="32" cy="52" r="4"/><circle cx="12" cy="32" r="4"/></g></svg>
+      <svg class="mark" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="11" fill="none" stroke="currentColor" stroke-width="2.5"/><g fill="currentColor"><circle cx="32" cy="12" r="4"/><circle cx="49.3" cy="42" r="4"/><circle cx="14.7" cy="42" r="4"/></g></svg>
       <span class="brand-text">Doing Church <em>Together</em></span>
     </a>
     <nav class="nav" aria-label="Main">
       <a href="#hub">Hub</a>
-      <a href="#handbook">Handbook</a>
       <a href="#comparative">Comparative Theology</a>
       <a href="#thetable">The Table</a>
-      <a href="#theology">Theology and Practice</a>
+      <a href="#more">Additional Resources</a>
     </nav>
   </div>
 </header>
@@ -332,7 +343,7 @@
   <div class="wrap hero-grid">
     <div class="hero-copy rise">
       <h1>Doing Church <em>Together</em></h1>
-      <p class="lede">A shared library, a field guide, and a map of the Christian traditions.</p>
+      <p class="lede">Three tools for doing ministry alongside other churches: a shared library of working documents, a map of the Christian family, and a place to ask colleagues.</p>
       <div class="hero-actions">
         <a class="btn" href="#hub">Start exploring</a>
         <a class="text-link" href="#fit">How they fit together</a>
@@ -342,10 +353,10 @@
       <p class="doors-label">Where to start</p>
       <ol>
         <li class="door-hub"><a href="#hub"><span class="d-dot"></span><span class="d-text"><span class="d-k">The Toolbox</span><span class="d-t">The Church Resource Hub</span></span><span class="d-arrow">→</span></a></li>
-        <li class="door-book"><a href="#handbook"><span class="d-dot"></span><span class="d-text"><span class="d-k">The Map</span><span class="d-t">The Pastor's Handbook</span></span><span class="d-arrow">→</span></a></li>
         <li class="door-compass"><a href="#comparative"><span class="d-dot"></span><span class="d-text"><span class="d-k">The Compass</span><span class="d-t">Comparative Theology</span></span><span class="d-arrow">→</span></a></li>
         <li class="door-table"><a href="#thetable"><span class="d-dot"></span><span class="d-text"><span class="d-k">The Conversation</span><span class="d-t">The Table</span></span><span class="d-arrow">→</span></a></li>
       </ol>
+      <p class="doors-more">Also here: <a href="#handbook">The Pastor's Handbook</a> for those new to ministry, and <a href="#theology">Theology and Practice</a>.</p>
     </nav>
   </div>
 </section>
@@ -361,52 +372,35 @@
       <p>A shared library of systems, processes, and working documents from real churches, more than 150 resources across every ministry area: orientation packets and budgets, event playbooks and safety policies, <a class="inline" href="https://spanishfortumc.org/safe">Online Safe Sanctuary Training</a>, frameworks and worship plans. Nothing theoretical, nothing gated; almost every card is a document a congregation actually uses, offered so yours can adapt it instead of starting from a blank page.</p>
       <p><strong>Where the cards come from</strong> most hold the actual working file, uploaded as the church uses it. Some describe a process that is real but was never written down in one place; those carry an "Edited Summary" label, meaning an AI assistant first drafted the description of how it happens from the church's own records, committee minutes, pastor's notes, and reports, and was then read and revised.</p>
       <p><strong>How to use it</strong> search for what you need or browse by ministry area, download the file, and make it your own. Stars mark the cornerstone documents, and the contribute page lets your church add its best work to the library.</p>
-      <p><strong>How it connects</strong> every "Grab the tools" list in the Pastor's Handbook points to a live card here. The book tells you what the tool is for; the hub hands it to you.</p>
+      <p><strong>How it connects</strong> any conversation on The Table can attach a card from here, and the best threads come back into the library as new cards. For those new to ministry, every chapter of the Pastor's Handbook points to the live cards it relies on.</p>
       <a class="btn" href="https://churchresourcehub.github.io/">Browse the Hub</a>
     </div>
   </div>
 </section>
 
-<section class="resource alt door-book" id="handbook">
-  <div class="wrap res-grid">
-    <div class="shot reveal">
-      <a href="https://pastorhandbook.vercel.app"><img src="assets/hero-book.png" alt="The Pastor's Handbook: the contents panel on the left, with the cover and table of contents open in the reading pane."></a>
-    </div>
-    <div class="copy reveal">
-      <div class="num"><span class="kicker"><b>02</b>The Map</span></div>
-      <h2>The Pastor's Handbook</h2>
-      <p>A digital field guide for leading a local church, written for first-time and newly appointed pastors, Course of Study students, and workshop cohorts. Thirty-four chapters across eight parts walk the whole job, from the pastor's own call and inner life through worship, care, discipleship, missions, money, and leading change, each chapter teaching one piece of the work in plain language, telling a true story of how it went at a real church, and ending with concrete steps.</p>
-      <p><strong>How it was written</strong> the frameworks in it are one pastor's own, worked out over fifteen years of doing the job, and the content of every chapter came out of real experience and personal documents. An AI assistant drafted against the lived experience and personal writings to create a steady structure across all thirty-four chapters. This document is created by Claude out of hundreds of thousands of words written over fifteen years regarding practical ministry. Each chapter has been read and revised for accuracy.</p>
-      <p><strong>How to use it</strong> read it straight through or jump to the chapter for the season you are in, take its one next step this week, and follow its links to the exact documents you need.</p>
-      <p><strong>How it connects</strong> the handbook is the map to the hub's toolbox. Where the hub gives you the document, the book gives you the path, and its running case study is the same congregation whose files fill the library.</p>
-      <a class="btn" href="https://pastorhandbook.vercel.app">Read the Handbook</a>
-    </div>
-  </div>
-</section>
-
-<section class="resource door-compass" id="comparative">
+<section class="resource alt door-compass" id="comparative">
   <div class="wrap res-grid">
     <div class="shot reveal">
       <a href="https://theologycompare.vercel.app"><img src="assets/hero-comparative.png" alt="Comparative Theology: the traditions plotted on a two-axis map, with tabs for the spectrum, the doctrine matrix, the genealogy, and authors and leaders."></a>
     </div>
     <div class="copy reveal">
-      <div class="num"><span class="kicker"><b>03</b>The Compass</span></div>
+      <div class="num"><span class="kicker"><b>02</b>The Compass</span></div>
       <h2>Comparative Theology</h2>
       <p>A map of the wider family of Christian traditions. Compare what the churches believe, doctrine by doctrine, and trace how they branched across two thousand years, from the early church to the many streams alive today. Every tradition is drawn fairly from its own voice, so the differences stay honest and the common ground stays real. An interactive assistant is built in, and it answers your questions from the source material each tradition recognizes.</p>
       <p><strong>How to use it</strong> pick any two questions and watch the traditions sort themselves across the map, read a single doctrine straight across the families, or open a tradition to meet its founders and the authors you would find on the shelf today. A built-in assistant compares any two traditions for you and answers from the sources.</p>
-      <p><strong>How it connects</strong> the hub and the handbook show you one congregation's practice. This shows you where any congregation's tradition sits inside the whole family, so you can see where your own stands and understand the neighbors you share a town and a mission with.</p>
+      <p><strong>How it connects</strong> the hub and The Table show you how congregations actually practice ministry. This shows you where any congregation's tradition sits inside the whole family, so you can see where your own stands and understand the neighbors you share a town and a mission with.</p>
       <a class="btn" href="https://theologycompare.vercel.app">Open Comparative Theology</a>
     </div>
   </div>
 </section>
 
-<section class="resource alt door-table" id="thetable">
+<section class="resource door-table" id="thetable">
   <div class="wrap res-grid">
     <div class="shot reveal">
       <a href="https://churchresourcehub.github.io/table/"><img src="assets/hero-table.png" alt="The Table: a feed of conversations by ministry area, with new library resources at the top."></a>
     </div>
     <div class="copy reveal">
-      <div class="num"><span class="kicker"><b>04</b>The Conversation</span></div>
+      <div class="num"><span class="kicker"><b>03</b>The Conversation</span></div>
       <h2>The Table</h2>
       <p>The library hands you the document. The Table hands you the colleagues. It is a conversation space for clergy and church leaders, newly set, where a question about starting a pumpkin patch gets answered by someone who has run one. Every conversation is tagged by ministry area, and the answers stay put, so the next pastor with the same question finds the thread instead of starting from scratch.</p>
       <p><strong>How to use it</strong> come with a question or come with an answer. Post under the ministry area it belongs to, attach the hub document it concerns, and reply to colleagues when you know something they need. Signing in is a single email link, with no password to remember.</p>
@@ -420,10 +414,6 @@
   <a class="door-hub" href="https://churchresourcehub.github.io/">
     <img src="assets/tall-hub.png" alt="The Church Resource Hub: a searchable library of real church documents on a warm paper background.">
     <span class="tag-bar"><span class="k">The Toolbox</span><span class="t">The Church Resource Hub</span></span>
-  </a>
-  <a class="door-book" href="https://pastorhandbook.vercel.app">
-    <img src="assets/tall-book.png" alt="The Pastor's Handbook: the contents panel beside an open chapter on the Pastor's Triangle.">
-    <span class="tag-bar"><span class="k">The Map</span><span class="t">The Pastor's Handbook</span></span>
   </a>
   <a class="door-compass" href="https://theologycompare.vercel.app">
     <img src="assets/tall-comparative.png" alt="Comparative Theology: the Christian traditions plotted on a two-axis map of what they believe.">
@@ -451,12 +441,6 @@
         <span class="f-body">You need a working document today, a policy, a playbook, a packet. Search the library, download it, and adapt it for your congregation.</span>
         <span class="f-go">Browse the Hub →</span>
       </a></li>
-      <li class="door-book"><a href="https://pastorhandbook.vercel.app">
-        <span class="f-label"><span class="d-dot"></span>Learn the work</span>
-        <span class="f-title">The Handbook</span>
-        <span class="f-body">You need to understand the job the documents serve. Read the chapter for your season, take its next step, and grab its tools from the hub as you go.</span>
-        <span class="f-go">Read the Handbook →</span>
-      </a></li>
       <li class="door-compass"><a href="https://theologycompare.vercel.app">
         <span class="f-label"><span class="d-dot"></span>Find your bearings</span>
         <span class="f-title">Comparative Theology</span>
@@ -473,11 +457,36 @@
   </div>
 </section>
 
-<section class="extra" id="theology">
+<section class="extra" id="more">
   <div class="wrap">
+    <div class="extra-intro reveal">
+      <div>
+        <p class="kicker">Additional Resources</p>
+        <h2>For those new to the work, and for the thinking underneath</h2>
+      </div>
+      <p>Two more pieces sit alongside the three tools. Neither is required to use the others.</p>
+    </div>
+
+    <div class="extra-block" id="handbook">
+      <div class="extra-grid">
+        <div class="extra-head reveal">
+          <p class="kicker">For First-Time Pastors</p>
+          <h2>The Pastor's Handbook</h2>
+          <p class="aud">For pastors in a first appointment and people new to ministry.</p>
+          <a class="btn on-ink" href="https://pastorhandbook.vercel.app">Read the Handbook</a>
+        </div>
+        <div class="extra-copy reveal">
+          <p>A digital field guide for leading a local church, written for first-time and newly appointed pastors, Course of Study students, and workshop cohorts, and for anyone stepping into ministry without training. Thirty-four chapters across eight parts walk the whole job, from the pastor's own call and inner life through worship, care, discipleship, missions, money, and leading change, each chapter teaching one piece of the work in plain language, telling a true story of how it went at a real church, and ending with concrete steps.</p>
+          <p><strong>How it was written</strong> the frameworks in it are one pastor's own, worked out over fifteen years of doing the job, and the content of every chapter came out of real experience and personal documents. An AI assistant drafted against the lived experience and personal writings to create a steady structure across all thirty-four chapters. This document is created by Claude out of hundreds of thousands of words written over fifteen years regarding practical ministry. Each chapter has been read and revised for accuracy.</p>
+          <p><strong>How it connects</strong> every "Grab the tools" list in the handbook points to a live card in the hub. The book tells you what the tool is for; the hub hands it to you.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="extra-block" id="theology">
     <div class="extra-grid">
       <div class="extra-head reveal">
-        <p class="kicker">An Additional Resource</p>
+        <p class="kicker">The Thinking Underneath</p>
         <h2>One pastor's way of working through theology and practice</h2>
         <a class="btn on-ink" href="https://theologybot.vercel.app">Explore the Theology</a>
       </div>
@@ -490,6 +499,7 @@
     <div class="shot-wide reveal">
       <a href="https://theologybot.vercel.app"><img src="assets/hero-theology.png" alt="Theology and Practice: the doctrine map with an Ask Me Anything assistant."></a>
     </div>
+    </div>
   </div>
 </section>
 
@@ -501,9 +511,9 @@
     </div>
     <ul class="foot-links">
       <li><a href="https://churchresourcehub.github.io/">Church Resource Hub</a></li>
-      <li><a href="https://pastorhandbook.vercel.app">The Pastor's Handbook</a></li>
       <li><a href="https://theologycompare.vercel.app">Comparative Theology</a></li>
       <li><a href="https://churchresourcehub.github.io/table/">The Table</a></li>
+      <li><a href="https://pastorhandbook.vercel.app">The Pastor's Handbook</a></li>
       <li><a href="https://theologybot.vercel.app">Theology and Practice</a></li>
     </ul>
   </div>
