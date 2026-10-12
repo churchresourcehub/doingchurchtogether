@@ -43,7 +43,11 @@
   const avatar = (n, small) => `<span class="avatar${small ? ' small' : ''}" style="--h:${hue(n)}" aria-hidden="true">${esc(initials(n))}</span>`;
   const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
   const todayIso = () => new Date().toLocaleDateString('en-CA');
-  const currentWeek = () => weeks.find(w => w.classDate >= todayIso()) || weeks[weeks.length - 1];
+  // The current week is the one whose sermon hasn't been preached yet. Reflections stay
+  // open until Sunday's sermon, so the site moves on to the next week at noon on Sunday.
+  const sermonPast = w => new Date(w.sunday + 'T12:00:00') <= new Date();
+  const currentWeek = () => weeks.find(w => !sermonPast(w)) || weeks[weeks.length - 1];
+  const classVerb = w => (w.classDate < todayIso() ? 'Class met' : 'Class meets');
   const gospelOf = w => w.readings.find(r => r.key === 'gospel');
   const colorName = w => (w.color === 'white' ? 'White' : 'Green');
 
@@ -65,11 +69,11 @@
             </div>
           </div>
           <a class="this-week rise delay" href="#/${now.slug}">
-            <span class="tw-label">This week</span>
+            <span class="tw-label">This Sunday's texts</span>
             <span class="tw-date"><span class="tw-mon">${day(now.sunday).toLocaleDateString('en-US', { month: 'short' })}</span><span class="tw-day">${day(now.sunday).getDate()}</span></span>
             <span class="tw-theme">${esc(now.theme)}</span>
             <span class="tw-refs">${now.readings.map(r => esc(r.ref)).join('<br>')}</span>
-            <span class="tw-foot"><span>Class meets ${fmtLong(now.classDate)}</span><span class="tw-count" data-count="${now.slug}"></span></span>
+            <span class="tw-foot"><span>Reflections open until the sermon</span><span class="tw-count" data-count="${now.slug}"></span></span>
           </a>
         </div>
       </section>
@@ -211,7 +215,7 @@
           <p class="kicker">${esc(week.title)} · ${fmtDay(week.sunday)}</p>
           <h1 class="rise">${esc(week.theme)}</h1>
           <p class="week-intro">${esc(week.intro)}</p>
-          <p class="week-meta"><span class="s-dot"></span>${colorName(week)} · Class meets ${fmtDay(week.classDate)}</p>
+          <p class="week-meta"><span class="s-dot"></span>${colorName(week)} · ${classVerb(week)} ${fmtDay(week.classDate)}${sermonPast(week) ? '' : ' · Reflections open until the sermon'}</p>
         </div>
       </section>
 
