@@ -143,6 +143,21 @@
   .shot-wide a { display: block; background: #fff; border-radius: var(--radius); padding: 10px; box-shadow: 0 20px 50px rgba(0,0,0,.3); }
   .shot-wide img { width: 100%; border-radius: 8px; }
 
+
+  /* Additional resources: two equal cards on the periwinkle wash */
+  .more { background: var(--peri-wash); padding: 88px 0 96px; }
+  .more .sec-head h2 { font-size: clamp(1.8rem, 3vw, 2.3rem); }
+  .more-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; align-items: start; }
+  .more-card { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; display: flex; flex-direction: column; }
+  .more-shot { display: block; background: var(--peri-wash); padding: 18px 18px 0; border-bottom: 1px solid var(--line); }
+  .more-shot img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: top center; border-radius: 8px 8px 0 0; border: 1px solid var(--line); border-bottom: 0; }
+  .more-body { padding: 26px 28px 30px; }
+  .more-body h3 { font-size: clamp(1.45rem, 2.4vw, 1.75rem); margin: 6px 0 6px; }
+  .more-body .aud { font-size: .9rem; color: var(--muted); margin-bottom: 16px; }
+  .more-body p { font-size: .95rem; margin-bottom: 12px; }
+  .more-body p strong { font-weight: 600; color: var(--navy); }
+  .more-body .btn { margin-top: 8px; }
+
   /* Footer */
   .site-foot { background: var(--navy-deep); color: var(--peri-wash); padding: 56px 0 60px; font-size: .9rem; }
   .foot-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; }
@@ -164,7 +179,7 @@
     .doors { max-width: 480px; }
     .extra-intro, .sec-head { grid-template-columns: 1fr; gap: 12px; }
     .extra-intro > p, .sec-head > p { justify-self: start; }
-    .tiles, .fit-grid { grid-template-columns: 1fr; }
+    .tiles, .fit-grid, .more-grid { grid-template-columns: 1fr; }
     .tiles a { aspect-ratio: 16 / 10; }
   }
   @media (max-width: 900px) {
@@ -180,6 +195,8 @@
     .lede { font-size: 1.05rem; }
     .resource, .fit { padding: 60px 0; }
     .extra { padding: 64px 0; }
+    .more { padding: 60px 0 64px; }
+    .more-body { padding: 22px 20px 24px; }
     .extra-block { padding: 24px 20px; }
     .foot-grid { grid-template-columns: 1fr; gap: 24px; }
   }
@@ -320,48 +337,40 @@
   </div>
 </section>
 
-<section class="extra" id="more">
+<section class="more" id="more">
   <div class="wrap">
-    <div class="extra-intro reveal">
+    <div class="sec-head reveal">
       <div>
         <p class="kicker">Additional Resources</p>
         <h2>For those new to the work, and for the thinking underneath</h2>
       </div>
       <p>Two more pieces sit alongside the three tools. Neither is required to use the others.</p>
     </div>
-
-    <div class="extra-block" id="handbook">
-      <div class="extra-grid">
-        <div class="extra-head reveal">
+    <div class="more-grid">
+      <article class="more-card reveal" id="handbook">
+        <a class="more-shot" href="https://pastorhandbook.vercel.app"><img src="assets/hero-book.png" alt="The Pastor's Handbook: the contents panel on the left, with the cover and table of contents open in the reading pane."></a>
+        <div class="more-body">
           <p class="kicker">For First-Time Pastors</p>
-          <h2>The Pastor's Handbook</h2>
+          <h3>The Pastor's Handbook</h3>
           <p class="aud">For pastors in a first appointment and people new to ministry.</p>
-          <a class="btn on-ink" href="https://pastorhandbook.vercel.app">Read the Handbook</a>
-        </div>
-        <div class="extra-copy reveal">
           <p>A digital field guide for leading a local church, written for first-time and newly appointed pastors, Course of Study students, and workshop cohorts, and for anyone stepping into ministry without training. Thirty-four chapters across eight parts walk the whole job, from the pastor's own call and inner life through worship, care, discipleship, missions, money, and leading change, each chapter teaching one piece of the work in plain language, telling a true story of how it went at a real church, and ending with concrete steps.</p>
           <p><strong>How it was written</strong> the frameworks in it are one pastor's own, worked out over fifteen years of doing the job, and the content of every chapter came out of real experience and personal documents. An AI assistant drafted against the lived experience and personal writings to create a steady structure across all thirty-four chapters. This document is created by Claude out of hundreds of thousands of words written over fifteen years regarding practical ministry. Each chapter has been read and revised for accuracy.</p>
           <p><strong>How it connects</strong> every "Grab the tools" list in the handbook points to a live card in the hub. The book tells you what the tool is for; the hub hands it to you.</p>
+          <a class="btn" href="https://pastorhandbook.vercel.app">Read the Handbook</a>
         </div>
-      </div>
-    </div>
-
-    <div class="extra-block" id="theology">
-    <div class="extra-grid">
-      <div class="extra-head reveal">
-        <p class="kicker">The Thinking Underneath</p>
-        <h2>One pastor's way of working through theology and practice</h2>
-        <a class="btn on-ink" href="https://theologybot.vercel.app">Explore the Theology</a>
-      </div>
-      <div class="extra-copy reveal">
-        <p>This began as one pastor's file drawer: almost twenty years of sermons, ordination papers, Bible studies, and weekly notes to a congregation. Gathered in one place, those pages turned out to hold a connected theology, so it was mapped: twenty-three doctrines, each hanging by a visible line from the foundation it depends on, alongside the sermons themselves and the practice library his church runs on. It is not offered as the definitive word on anything. It is a real-world example of a pastor working out his theology in the open, in a visual, connected way, and an assistant answers your questions from the full text of it, anchored in what was actually written and preached rather than in the internet's guesses.</p>
+      </article>
+      <article class="more-card reveal" id="theology">
+        <a class="more-shot" href="https://theologybot.vercel.app"><img src="assets/hero-theology.png" alt="Theology and Practice: the doctrine map with an Ask Me Anything assistant."></a>
+        <div class="more-body">
+          <p class="kicker">The Thinking Underneath</p>
+          <h3>One pastor's way of working through theology and practice</h3>
+          <p class="aud">Theology and Practice: a doctrine map with an assistant.</p>
+          <p>This began as one pastor's file drawer: almost twenty years of sermons, ordination papers, Bible studies, and weekly notes to a congregation. Gathered in one place, those pages turned out to hold a connected theology, so it was mapped: twenty-three doctrines, each hanging by a visible line from the foundation it depends on, alongside the sermons themselves and the practice library his church runs on. It is not offered as the definitive word on anything. It is a real-world example of a pastor working out his theology in the open, in a visual, connected way, and an assistant answers your questions from the full text of it, anchored in what was actually written and preached rather than in the internet's guesses.</p>
         <p><strong>How to use it</strong> click any doctrine to read its full treatment, in either an academic or plain-language version, and follow the connections from one locus into the next, or simply ask the assistant a question, about grace, about Scripture, about women in ministry, and read the sources it answers from.</p>
         <p><strong>How it connects</strong> the practice in the hub and the handbook stands on this thinking. If the book ever makes you ask why behind a how, this is where the why lives.</p>
-      </div>
-    </div>
-    <div class="shot-wide reveal">
-      <a href="https://theologybot.vercel.app"><img src="assets/hero-theology.png" alt="Theology and Practice: the doctrine map with an Ask Me Anything assistant."></a>
-    </div>
+          <a class="btn" href="https://theologybot.vercel.app">Explore the Theology</a>
+        </div>
+      </article>
     </div>
   </div>
 </section>
