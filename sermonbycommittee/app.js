@@ -61,7 +61,7 @@
         <div class="wrap hero-grid">
           <div class="hero-copy rise">
             <p class="kicker">${name ? `Welcome back, ${esc(name.split(' ')[0])}` : 'Sunday evenings · Fall 2026'}</p>
-            <h1>The sermon starts <em>around the table.</em></h1>
+            <h1>The sermon starts around the table.</h1>
             <p class="lede">Reading scripture in community is as old a practice as scripture itself. Each Sunday evening we read the coming Sunday's texts together, and what we find shapes the sermon. On the weeks we can't meet, or you can't be there, the conversation continues here.</p>
             <div class="hero-actions">
               <a class="btn" href="#/${now.slug}">Read this week's texts</a>
